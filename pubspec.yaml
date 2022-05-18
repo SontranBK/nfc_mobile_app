@@ -1,0 +1,33 @@
+name: app
+description: A new Flutter project.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  nfc_manager:
+  package_info:
+  provider:
+  sqflite:
+  url_launcher:
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_launcher_icons:
+
+flutter:
+  uses-material-design: true
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path_android: "assets/icon/android.png"
+  image_path_ios: "assets/icon/ios.png"
+  adaptive_icon_foreground: assets/icon/android_adaptive.png
+  adaptive_icon_background: "#4d8cfe"
+  remove_alpha_ios: true
