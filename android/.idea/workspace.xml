@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="27ad28ef-bbb4-4cc3-a9f1-21984cef7b71" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ProjectId" id="27xmfz7xEw9lcyIksI8EctgkRor" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="android.sdk.path" value="C:/Android/sdk" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../lib" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.17" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="27ad28ef-bbb4-4cc3-a9f1-21984cef7b71" name="Default Changelist" comment="" />
+      <created>1650270218458</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1650270218458</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="317" y="178" key="#PSD" timestamp="1650271118614">
+      <screen x="62" y="0" width="1474" height="864" />
+    </state>
+    <state x="317" y="178" key="#PSD/62.0.1474.864@62.0.1474.864" timestamp="1650271118614" />
+    <state x="254" y="87" width="1089" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1650775038187">
+      <screen x="62" y="0" width="1474" height="864" />
+    </state>
+    <state x="254" y="87" width="1089" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog/62.0.1474.864@62.0.1474.864" timestamp="1650775038187" />
+    <state x="544" y="234" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1650384555523">
+      <screen x="62" y="0" width="1474" height="864" />
+    </state>
+    <state x="544" y="234" key="#com.intellij.fileTypes.FileTypeChooser/62.0.1474.864@62.0.1474.864" timestamp="1650384555523" />
+    <state x="155" y="93" width="1288" height="678" key="AVDManager" timestamp="1650271448989">
+      <screen x="62" y="0" width="1474" height="864" />
+    </state>
+    <state x="155" y="93" width="1288" height="678" key="AVDManager/62.0.1474.864@62.0.1474.864" timestamp="1650271448989" />
+    <state x="580" y="187" key="FileChooserDialogImpl" timestamp="1650818844080">
+      <screen x="62" y="0" width="1474" height="864" />
+    </state>
+    <state x="580" y="187" key="FileChooserDialogImpl/62.0.1474.864@62.0.1474.864" timestamp="1650818844080" />
+    <state x="456" y="197" key="run.anything.popup" timestamp="1650270584690">
+      <screen x="62" y="0" width="1474" height="864" />
+    </state>
+    <state x="456" y="197" key="run.anything.popup/62.0.1474.864@62.0.1474.864" timestamp="1650270584690" />
+  </component>
+</project>
