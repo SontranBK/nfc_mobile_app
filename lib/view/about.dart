@@ -10,6 +10,7 @@ class AboutPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('About'),
       ),
+      
       body: ListView(
         padding: EdgeInsets.all(2),
         children: [
