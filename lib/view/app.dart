@@ -9,6 +9,9 @@ import 'package:app/view/ndef_write_lock.dart';
 import 'package:app/view/tag_read.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:app/view/ScanQR.dart';
+import 'package:app/view/GenerateQR.dart';
+
 
 class App extends StatelessWidget {
   static Future<Widget> withDependency() async {
@@ -38,28 +41,42 @@ class _Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('NFC Manager'),
+        title: Text('App of Tea'),//Tên ứng dung
       ),
       body: ListView(
         padding: EdgeInsets.all(2),
         children: [
           FormSection(children: [
             FormRow(
-              title: Text('Tag - Read'),
+              title: Text('Ndef - Doc The'),
               trailing: Icon(Icons.chevron_right),
               onTap: () => Navigator.push(context, MaterialPageRoute(
                 builder: (context) => TagReadPage.withDependency(),
               )),
             ),
             FormRow(
-              title: Text('Ndef - Write'),
+              title: Text('QR Code Scanner'),
+              trailing: Icon(Icons.chevron_right),
+              onTap: () => Navigator.push(context, MaterialPageRoute(
+                builder: (context) => ScanQRCode(),
+              )),
+            ),
+            FormRow(
+              title: Text('Generate QR Code'),
+              trailing: Icon(Icons.chevron_right),
+              onTap: () => Navigator.push(context, MaterialPageRoute(
+                builder: (context) => GenerateQRCode(),
+              )),
+            ),
+            FormRow(
+              title: Text('Ndef - Ghi The'),//Ghi dữ liệu vào thẻ
               trailing: Icon(Icons.chevron_right),
               onTap: () => Navigator.push(context, MaterialPageRoute(
                 builder: (context) => NdefWritePage.withDependency(),
               )),
             ),
             FormRow(
-              title: Text('Ndef - Write Lock'),
+              title: Text('Ndef - Ghi Khoa'),
               trailing: Icon(Icons.chevron_right),
               onTap: () => Navigator.push(context, MaterialPageRoute(
                 builder: (context) => NdefWriteLockPage.withDependency(),
@@ -67,7 +84,7 @@ class _Home extends StatelessWidget {
             ),
             if (Platform.isAndroid)
               FormRow(
-                title: Text('Ndef - Format'),
+                title: Text('Ndef - Dinh Dang'),
                 trailing: Icon(Icons.chevron_right),
                 onTap: () => Navigator.push(context, MaterialPageRoute(
                   builder: (context) => NdefFormatPage.withDependency(),
@@ -76,7 +93,7 @@ class _Home extends StatelessWidget {
           ]),
           FormSection(children: [
             FormRow(
-              title: Text('About'),
+              title: Text('Thong Tin App'), //Thong tin them ve ung dung: ten ung dung, phien ban, chinh sach bao mat
               trailing: Icon(Icons.chevron_right),
               onTap: () => Navigator.push(context, MaterialPageRoute(
                 builder: (context) => AboutPage(),
