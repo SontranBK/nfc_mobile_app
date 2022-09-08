@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:app/view/ScanQR.dart';
 import 'package:app/view/GenerateQR.dart';
+import 'package:app/view/intro.dart';
 
 
 class App extends StatelessWidget {
@@ -48,6 +49,16 @@ class _Home extends StatelessWidget {
         children: [
           FormSection(children: [
             FormRow(
+              title: Text('Login'),
+              trailing: Icon(Icons.chevron_right),
+              onTap: () => Navigator.push(context, MaterialPageRoute(
+                builder: (context) => MyApp(),
+              )),
+            ),
+          ]
+          ),
+          FormSection(children: [
+            FormRow(
               title: Text('Ndef - Doc The'),
               trailing: Icon(Icons.chevron_right),
               onTap: () => Navigator.push(context, MaterialPageRoute(
@@ -65,10 +76,10 @@ class _Home extends StatelessWidget {
               title: Text('Generate QR Code'),
               trailing: Icon(Icons.chevron_right),
               onTap: () => Navigator.push(context, MaterialPageRoute(
-                builder: (context) => GenerateQRCode(),
+                builder: (context) => GenerateQRPage(),
               )),
             ),
-            FormRow(
+            /*FormRow(
               title: Text('Ndef - Ghi The'),//Ghi dữ liệu vào thẻ
               trailing: Icon(Icons.chevron_right),
               onTap: () => Navigator.push(context, MaterialPageRoute(
@@ -89,7 +100,7 @@ class _Home extends StatelessWidget {
                 onTap: () => Navigator.push(context, MaterialPageRoute(
                   builder: (context) => NdefFormatPage.withDependency(),
                 )),
-              ),
+              ),*/
           ]),
           FormSection(children: [
             FormRow(
