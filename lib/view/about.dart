@@ -8,9 +8,8 @@ class AboutPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('About'),
+        title: Text('BK LAB manager information'),
       ),
-      
       body: ListView(
         padding: EdgeInsets.all(2),
         children: [
@@ -18,7 +17,7 @@ class AboutPage extends StatelessWidget {
             future: PackageInfo.fromPlatform(),
             builder: (context, ss) => FormSection(children: [
               FormRow(
-                title: Text('App Name'),
+                title: Text('App name'),
                 trailing: Text(ss.data?.appName ?? ''),
               ),
               FormRow(
@@ -26,16 +25,16 @@ class AboutPage extends StatelessWidget {
                 trailing: Text(ss.data?.version ?? ''),
               ),
               FormRow(
-                title: Text('Build Number'),
+                title: Text('Build number'),
                 trailing: Text(ss.data?.buildNumber ?? ''),
               ),
             ]),
           ),
           FormSection(children: [
             FormRow(
-              title: Text('Privacy Policy'),
+              title: Text('Policy'),
               trailing: Icon(Icons.open_in_new),
-              onTap: () => launch('https://nfcmanager.naokiokada.com/privacy-policy/'),
+              onTap: () => launch('') //('https://nfcmanager.naokiokada.com/privacy-policy/'),
             ),
           ]),
         ],

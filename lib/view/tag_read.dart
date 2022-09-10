@@ -49,7 +49,7 @@ class TagReadPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Tag - Read'),
+        title: Text('Read NFC cards'),
       ),
       body: ListView(
         padding: EdgeInsets.all(2),
@@ -57,7 +57,7 @@ class TagReadPage extends StatelessWidget {
           FormSection(
             children: [
               FormRow(
-                title: Text('Start Session', style: TextStyle(color: Theme.of(context).colorScheme.primary)),
+                title: Text('Start scanning', style: TextStyle(color: Theme.of(context).colorScheme.primary)),
                 onTap: () => startSession(
                   context: context,
                   handleTag: Provider.of<TagReadModel>(context, listen: false).handleTag,
@@ -93,7 +93,7 @@ class _TagInfo extends StatelessWidget {
 
     Object? tech;
 
-    if (Platform.isAndroid) {
+    if (Platform.isAndroid) { //Danh cho Android
       tagWidgets.add(FormRow(
         title: Text('Identifier'),
         subtitle: Text('${(
@@ -105,11 +105,11 @@ class _TagInfo extends StatelessWidget {
         ).toHexString()}'),
       ));
       tagWidgets.add(FormRow(
-        title: Text('Tech List'),
+        title: Text('Tech List'),//Danh sach cac loai the chi danh cho android
         subtitle: Text(_getTechListString(tag)),
       ));
 
-      tech = NfcA.from(tag);
+      tech = NfcA.from(tag); //Danh cho loai the NfcA
       if (tech is NfcA) {
         tagWidgets.add(FormRow(
           title: Text('NfcA - Atqa'),
@@ -120,7 +120,7 @@ class _TagInfo extends StatelessWidget {
           subtitle: Text('${tech.sak}'),
         ));
         tagWidgets.add(FormRow(
-          title: Text('NfcA - Max Transceive Length'),
+          title: Text('NfcA - Max Transceive Length'),//Do dai toi da cua du lieu nhap vao
           subtitle: Text('${tech.maxTransceiveLength}'),
         ));
         tagWidgets.add(FormRow(
@@ -128,35 +128,35 @@ class _TagInfo extends StatelessWidget {
           subtitle: Text('${tech.timeout}'),
         ));
 
-        tech = MifareClassic.from(tag);
+        tech = MifareClassic.from(tag);//Danh cho the Mifare co ban
         if (tech is MifareClassic) {
           tagWidgets.add(FormRow(
-            title: Text('MifareClassic - Type'),
+            title: Text('MifareClassic - Type'),//Kieu du lieu
             subtitle: Text(_getMiFareClassicTypeString(tech.type)),
           ));
           tagWidgets.add(FormRow(
-            title: Text('MifareClassic - Size'),
+            title: Text('MifareClassic - Size'),// kich thuoc du lieu
             subtitle: Text('${tech.size}'),
           ));
           tagWidgets.add(FormRow(
-            title: Text('MifareClassic - Sector Count'),
+            title: Text('MifareClassic - Sector Count'),//So luong du lieu
             subtitle: Text('${tech.sectorCount}'),
           ));
           tagWidgets.add(FormRow(
-            title: Text('MifareClassic - Block Count'),
+            title: Text('MifareClassic - Block Count'),//Khoi du lieu
             subtitle: Text('${tech.blockCount}'),
           ));
           tagWidgets.add(FormRow(
-            title: Text('MifareClassic - Max Transceive Length'),
+            title: Text('MifareClassic - Max Transceive Length'),//Do dai toi da cua du lieu
             subtitle: Text('${tech.maxTransceiveLength}'),
           ));
           tagWidgets.add(FormRow(
-            title: Text('MifareClassic - Timeout'),
+            title: Text('MifareClassic - Timeout'),//Thoi gian thoat neu khong thao tac
             subtitle: Text('${tech.timeout}'),
           ));
         }
 
-        tech = MifareUltralight.from(tag);
+        tech = MifareUltralight.from(tag);//danh cho the mifare ultralight
         if (tech is MifareUltralight) {
           tagWidgets.add(FormRow(
             title: Text('MifareUltralight - Type'),
@@ -173,14 +173,14 @@ class _TagInfo extends StatelessWidget {
         }
       }
 
-      tech = NfcB.from(tag);
+      tech = NfcB.from(tag);//The nfcB, cung cap truy cap toi tieu chuan NFC-B
       if (tech is NfcB) {
         tagWidgets.add(FormRow(
-          title: Text('NfcB - Application Data'),
+          title: Text('NfcB - Application Data'),//Du lieu trong the
           subtitle: Text('${tech.applicationData.toHexString()}'),
         ));
         tagWidgets.add(FormRow(
-          title: Text('NfcB - Protocol Info'),
+          title: Text('NfcB - Protocol Info'),//Thong tin giao thuc truyen du lieu
           subtitle: Text('${tech.protocolInfo.toHexString()}'),
         ));
         tagWidgets.add(FormRow(
@@ -189,14 +189,14 @@ class _TagInfo extends StatelessWidget {
         ));
       }
 
-      tech = NfcF.from(tag);
+      tech = NfcF.from(tag);//danh cho the NfcF
       if (tech is NfcF) {
         tagWidgets.add(FormRow(
-          title: Text('NfcF - System Code'),
+          title: Text('NfcF - System Code'),//Ma he thong de truy cap vao the
           subtitle: Text('${tech.systemCode.toHexString()}'),
         ));
         tagWidgets.add(FormRow(
-          title: Text('NfcF - Manufacturer'),
+          title: Text('NfcF - Manufacturer'),//danh cho nha che tao the
           subtitle: Text('${tech.manufacturer.toHexString()}'),
         ));
         tagWidgets.add(FormRow(
@@ -209,14 +209,14 @@ class _TagInfo extends StatelessWidget {
         ));
       }
 
-      tech = NfcV.from(tag);
+      tech = NfcV.from(tag);//Danh cho the NfcV
       if (tech is NfcV) {
         tagWidgets.add(FormRow(
-          title: Text('NfcV - DsfId'),
+          title: Text('NfcV - DsfId'),//Ghi du lieu vao the
           subtitle: Text('${tech.dsfId}'),
         ));
         tagWidgets.add(FormRow(
-          title: Text('NfcV - Response Flags'),
+          title: Text('NfcV - Response Flags'),//Co phan hoi tu nguoi dung
           subtitle: Text('${tech.responseFlags}'),
         ));
         tagWidgets.add(FormRow(
@@ -225,18 +225,18 @@ class _TagInfo extends StatelessWidget {
         ));
       }
 
-      tech = IsoDep.from(tag);
+      tech = IsoDep.from(tag);//the IosDep danh cho android
       if (tech is IsoDep) {
         tagWidgets.add(FormRow(
           title: Text('IsoDep - Hi Layer Response'),
           subtitle: Text('${tech.hiLayerResponse?.toHexString() ?? '-'}'),
         ));
         tagWidgets.add(FormRow(
-          title: Text('IsoDep - Historical Bytes'),
+          title: Text('IsoDep - Historical Bytes'),//Lich su luw tru cac byte du lieu
           subtitle: Text('${tech.historicalBytes?.toHexString() ?? '-'}'),
         ));
         tagWidgets.add(FormRow(
-          title: Text('IsoDep - Extended Length Apdu Supported'),
+          title: Text('IsoDep - Extended Length Apdu Supported'),//Du lieu tuan theo dinh sanh Apdu
           subtitle: Text('${tech.isExtendedLengthApduSupported}'),
         ));
         tagWidgets.add(FormRow(
@@ -250,8 +250,8 @@ class _TagInfo extends StatelessWidget {
       }
     }
 
-    if (Platform.isIOS) {
-      tech = FeliCa.from(tag);
+    if (Platform.isIOS) {//Danh cho nen tang ios
+      tech = FeliCa.from(tag);//danh cho loai the Felica
       if (tech is FeliCa) {
         final manufacturerParameter = additionalData['manufacturerParameter'] as Uint8List?;
         tagWidgets.add(FormRow(
@@ -259,16 +259,16 @@ class _TagInfo extends StatelessWidget {
           subtitle: Text('FeliCa'),
         ));
         tagWidgets.add(FormRow(
-          title: Text('Current IDm'),
+          title: Text('Current IDm'),//Truyen tai du lieu vao the
           subtitle: Text('${tech.currentIDm.toHexString()}'),
         ));
         tagWidgets.add(FormRow(
-          title: Text('Current System Code'),
+          title: Text('Current System Code'),//ma he thong truy cap vao the
           subtitle: Text('${tech.currentSystemCode.toHexString()}'),
         ));
         if (manufacturerParameter != null)
           tagWidgets.add(FormRow(
-            title: Text('Manufacturer Parameter'),
+            title: Text('Manufacturer Parameter'),//Thong so nha san xuat
             subtitle: Text('${manufacturerParameter.toHexString()}'),
           ));
       }
@@ -276,19 +276,19 @@ class _TagInfo extends StatelessWidget {
       tech = Iso15693.from(tag);
       if (tech is Iso15693) {
         tagWidgets.add(FormRow(
-          title: Text('Type'),
+          title: Text('Type'),//ten the
           subtitle: Text('ISO15693'),
         ));
         tagWidgets.add(FormRow(
-          title: Text('Identifier'),
+          title: Text('Identifier'),//thong tin ve the
           subtitle: Text('${tech.identifier.toHexString()}'),
         ));
         tagWidgets.add(FormRow(
-          title: Text('IC Serial Number'),
+          title: Text('IC Serial Number'),//So seri cua the
           subtitle: Text('${tech.icSerialNumber.toHexString()}'),
         ));
         tagWidgets.add(FormRow(
-          title: Text('IC Manufacturer Code'),
+          title: Text('IC Manufacturer Code'),//Max so cua nha san xuat in len the
           subtitle: Text('${tech.icManufacturerCode}'),
         ));
       }
@@ -316,12 +316,12 @@ class _TagInfo extends StatelessWidget {
           subtitle: Text('${tech.historicalBytes?.toHexString() ?? '-'}'),
         ));
         tagWidgets.add(FormRow(
-          title: Text('Proprietary Application Data Coding'),
+          title: Text('Proprietary Application Data Coding'),//Ma hoa du lieu trong the
           subtitle: Text('${tech.proprietaryApplicationDataCoding}'),
         ));
       }
 
-      tech = MiFare.from(tag);
+      tech = MiFare.from(tag);//The Mifare danh cho Ios
       if (tech is MiFare) {
         tagWidgets.add(FormRow(
           title: Text('Type'),
@@ -338,14 +338,14 @@ class _TagInfo extends StatelessWidget {
       }
     }
 
-    tech = Ndef.from(tag);
+    tech = Ndef.from(tag);//The Ndef, ndef la mot loaij giao thuc  cho phep nhan va gui du lieu giua 2 thiet bi cos ho tro nfc
     if (tech is Ndef) {
       final cachedMessage = tech.cachedMessage;
       final canMakeReadOnly = tech.additionalData['canMakeReadOnly'] as bool?;
       final type = tech.additionalData['type'] as String?;
       if (type != null)
         ndefWidgets.add(FormRow(
-          title: Text('Type'),
+          title: Text('Type'),//Neu the co du lieu thi hien du lieu ra
           subtitle: Text(_getNdefType(type)),
         ));
       ndefWidgets.add(FormRow(
@@ -353,7 +353,7 @@ class _TagInfo extends StatelessWidget {
         subtitle: Text('${cachedMessage?.byteLength ?? 0} / ${tech.maxSize} bytes'),
       ));
       ndefWidgets.add(FormRow(
-        title: Text('Writable'),
+        title: Text('Writable'),//Ghi du lieu
         subtitle: Text('${tech.isWritable}'),
       ));
       if (canMakeReadOnly != null)
