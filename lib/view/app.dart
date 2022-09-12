@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:app/view/ScanQR.dart';
 import 'package:app/view/GenerateQR.dart';
-import 'package:app/view/intro.dart';
+import 'package:app/view/login.dart';
 import 'package:app/view/scan_new.dart';
 
 
