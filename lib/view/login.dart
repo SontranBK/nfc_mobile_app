@@ -14,7 +14,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(title: Text('Sample App'),),
+        appBar: AppBar(title: Text('Log in screen'),),
         body: const MyStatefulWidget(),
       ),
     );

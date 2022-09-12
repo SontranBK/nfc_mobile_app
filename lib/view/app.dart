@@ -43,6 +43,7 @@ class _Home extends StatelessWidget {
       appBar: AppBar(
         title: Text('BK Lab Manager'),//Tên ứng dung
       ),
+      backgroundColor: Colors.white,
       body: ListView(
         padding: EdgeInsets.all(2),
         children: [

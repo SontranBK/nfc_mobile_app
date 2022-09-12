@@ -8,8 +8,9 @@ class AboutPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('BK LAB manager information'),
+        title: Text('BK LAB manager informations'),
       ),
+      backgroundColor: Colors.white,
       body: ListView(
         padding: EdgeInsets.all(2),
         children: [

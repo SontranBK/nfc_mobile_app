@@ -13,6 +13,7 @@ class _GenerateQRPageState extends State<GenerateQRPage> {
       appBar: AppBar(
         title: Text('QR GENERATOR'),
       ),
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Center(
           child: Column(
@@ -31,7 +32,9 @@ class _GenerateQRPageState extends State<GenerateQRPage> {
                 child: TextField(
                   controller: controller,
                   decoration: InputDecoration(
-                      border: OutlineInputBorder(), labelText: 'Enter URL'),
+                      border: OutlineInputBorder(borderSide: const BorderSide(color: Colors.grey, width: 0.0),), 
+                      labelText: 'Enter URL'
+                  ),
                 ),
               ),
               ElevatedButton(
