@@ -8,8 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:app/view/ScanQR.dart';
 import 'package:app/view/GenerateQR.dart';
-import 'package:app/view/login.dart';
+import 'package:app/view/intro.dart';
 import 'package:app/view/scan_new.dart';
+import 'package:app/view/intro_screen.dart';
 
 
 
@@ -43,7 +44,6 @@ class _Home extends StatelessWidget {
       appBar: AppBar(
         title: Text('BK Lab Manager'),//Tên ứng dung
       ),
-      backgroundColor: Colors.white,
       body: ListView(
         padding: EdgeInsets.all(2),
         children: [
@@ -67,13 +67,6 @@ class _Home extends StatelessWidget {
             ),
             FormRow(
               title: Text('QR Code Scanner'),
-              trailing: Icon(Icons.chevron_right),
-              onTap: () => Navigator.push(context, MaterialPageRoute(
-                builder: (context) => MyHome(),
-              )),
-            ),
-            FormRow(
-              title: Text('QR Code Scanner 2'),
               trailing: Icon(Icons.chevron_right),
               onTap: () => Navigator.push(context, MaterialPageRoute(
                 builder: (context) => ScanQRCode(),
