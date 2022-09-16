@@ -81,7 +81,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                 //forgot password screen
               },
               child: const Text(
-                'Forgot Password',
+                'Forgot Password?',
               ),
             ),
             Container(
@@ -97,10 +97,10 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                const Text('Does not have account?'),
+                const Text('Do not have an account?'),
                 TextButton(
                   child: const Text(
-                    'Sign in',
+                    'Sign up',
                     style: TextStyle(fontSize: 20),
                   ),
                   onPressed: () {
