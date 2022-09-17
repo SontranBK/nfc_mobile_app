@@ -11,7 +11,7 @@ import 'package:app/view/GenerateQR.dart';
 import 'package:app/view/intro.dart';
 import 'package:app/view/scan_new.dart';
 import 'package:app/view/intro_screen.dart';
-
+import 'package:splash_screen_view/SplashScreenView.dart';
 
 
 class App extends StatelessWidget {
@@ -29,8 +29,27 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Widget example1 = SplashScreenView(
+      navigateRoute: _Home(),
+      duration: 5000,
+      imageSize: 300,
+      imageSrc: "assets/splashscreen_image.png",
+      text: "BK Lab Manager",
+      textType: TextType.ColorizeAnimationText,
+      textStyle: TextStyle(
+        fontSize: 40.0,
+      ),
+      colors: [
+        Colors.purple,
+        Colors.blue,
+        Colors.yellow,
+        Colors.red,
+      ],
+      backgroundColor: Colors.white,
+    );
+
     return MaterialApp(
-      home: _Home(),
+      home: example1,
       theme: _themeData(Brightness.light),
       darkTheme: _themeData(Brightness.dark),
     );
