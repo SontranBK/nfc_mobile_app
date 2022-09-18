@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:app/view/ScanQR.dart';
 import 'package:app/view/GenerateQR.dart';
-import 'package:app/view/intro.dart';
+import 'package:app/view/login.dart';
 import 'package:app/view/scan_new.dart';
 import 'package:app/view/intro_screen.dart';
 import 'package:splash_screen_view/SplashScreenView.dart';
@@ -51,7 +51,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       home: example1,
       theme: _themeData(Brightness.light),
-      darkTheme: _themeData(Brightness.dark),
+      darkTheme: _themeData(Brightness.light),
     );
   }
 }
@@ -63,6 +63,7 @@ class _Home extends StatelessWidget {
       appBar: AppBar(
         title: Text('BK Lab Manager'),//Tên ứng dung
       ),
+      backgroundColor: Colors.white,
       body: ListView(
         padding: EdgeInsets.all(2),
         children: [
@@ -101,7 +102,7 @@ class _Home extends StatelessWidget {
           ]),
           FormSection(children: [
             FormRow(
-              title: Text('Infomation'), //Thong tin them ve ung dung: ten ung dung, phien ban, chinh sach bao mat
+              title: Text('Information'),
               trailing: Icon(Icons.chevron_right),
               onTap: () => Navigator.push(context, MaterialPageRoute(
                 builder: (context) => AboutPage(),
@@ -116,6 +117,7 @@ class _Home extends StatelessWidget {
 
 ThemeData _themeData(Brightness brightness) {
   return ThemeData(
+    fontFamily: "Poppins",
     brightness: brightness,
      // Matches app icon color.
     primarySwatch:  MaterialColor(0xFF4D8CFE, <int, Color>{

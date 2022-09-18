@@ -1,45 +1,136 @@
-import 'package:app/view/common/form_row.dart';
 import 'package:flutter/material.dart';
-import 'package:package_info/package_info.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
-class AboutPage extends StatelessWidget {
+
+const kLightBlue = Color(0xffEBF6FF);
+const kDarkBlue = Color(0xff369FFF);
+
+
+class AboutPage extends StatefulWidget {
+  const AboutPage({Key? key}) : super(key: key);
+  @override
+  _AboutPageState createState() => _AboutPageState();
+}
+
+class _AboutPageState extends State<AboutPage> {
+  PackageInfo _packageInfo = PackageInfo(
+    appName: 'Unknown',
+    packageName: 'Unknown',
+    version: 'Unknown',
+    buildNumber: 'Unknown',
+    buildSignature: 'Unknown',
+  );
+
+  @override
+  void initState() {
+    super.initState();
+    _initPackageInfo();
+  }
+
+  Future<void> _initPackageInfo() async {
+    final info = await PackageInfo.fromPlatform();
+    setState(() {
+      _packageInfo = info;
+    });
+  }
+
+
   @override
   Widget build(BuildContext context) {
+    final List<String>title_name  = [
+      "App Display Name",
+      "App Package Name",
+      "App Publish Version",
+      "Release Build Number",
+      "Release Build Signature",
+      "Developing Teams",
+    ];
+    final List<String>content_name  = [
+      _packageInfo.appName.isEmpty ? 'Not set' : _packageInfo.appName,
+      _packageInfo.packageName.isEmpty ? 'Not set' : _packageInfo.packageName,
+      _packageInfo.version.isEmpty ? 'Not set' : _packageInfo.version,
+      _packageInfo.buildNumber.isEmpty ? 'Not set' : _packageInfo.buildNumber,
+      _packageInfo.buildSignature.isEmpty ? 'Not set' : _packageInfo.buildSignature,
+      "  Son Tran BK \n  and CTARG team",
+    ];
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('BK LAB manager informations'),
-      ),
-      backgroundColor: Colors.white,
-      body: ListView(
-        padding: EdgeInsets.all(2),
-        children: [
-          FutureBuilder<PackageInfo>(
-            future: PackageInfo.fromPlatform(),
-            builder: (context, ss) => FormSection(children: [
-              FormRow(
-                title: Text('App name'),
-                trailing: Text(ss.data?.appName ?? ''),
-              ),
-              FormRow(
-                title: Text('Version'),
-                trailing: Text(ss.data?.version ?? ''),
-              ),
-              FormRow(
-                title: Text('Build number'),
-                trailing: Text(ss.data?.buildNumber ?? ''),
-              ),
-            ]),
-          ),
-          FormSection(children: [
-            FormRow(
-              title: Text('Policy'),
-              trailing: Icon(Icons.open_in_new),
-              onTap: () => launch('') //('https://nfcmanager.naokiokada.com/privacy-policy/'),
+        title: Text('App Information'),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.info_outlined,
+              color: Colors.white,
             ),
-          ]),
+            onPressed: () {
+              // do something
+            },
+          )
         ],
       ),
+      body:Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      child: Center(
+      child: GridView.builder(
+        itemCount: title_name.length,
+        physics: const NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisSpacing: 15,
+            childAspectRatio: 1,
+            crossAxisCount: 2,
+            mainAxisSpacing: 40),
+        itemBuilder: (context, index) {
+          return Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              color: kLightBlue,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    title_name[index],
+                    maxLines: 2,
+                    softWrap: true,
+                    style: const TextStyle(
+                      fontSize: 17,
+                      color: Color(0xff8EA3B7),
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        height: 35,
+                        width: 8,
+                        decoration: BoxDecoration(
+                            color: kDarkBlue,
+                            borderRadius: BorderRadius.circular(15)),
+                      ),
+                      Text(
+                        content_name[index],
+                        style: const TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xff006ED3),
+                        ),
+                      )
+                    ],
+                  )
+                ],
+              ),
+            ),
+          );
+        },
+      ),
+    )
+      )
     );
   }
 }
+

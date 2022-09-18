@@ -12,7 +12,7 @@ dependencies:
   flutter_web_plugins:
     sdk: flutter
   nfc_manager:
-  package_info:
+  package_info_plus:
   provider:
   sqflite:
   url_launcher:
@@ -34,6 +34,11 @@ flutter:
   uses-material-design: true
   assets:
     - splashscreen_image.png
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: fonts/Poppins-Regular.ttf
+
 
 flutter_icons:
   android: true
