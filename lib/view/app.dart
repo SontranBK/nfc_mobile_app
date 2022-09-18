@@ -32,7 +32,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     Widget example1 = SplashScreenView(
       navigateRoute: _Home(),
-      duration: 6000,
+      duration: 5000,
       imageSize: 300,
       imageSrc: "assets/splashscreen_image.png",
       text: "BK Lab Manager",
