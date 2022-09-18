@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:app/repository/repository.dart';
 import 'package:app/view/about.dart';
 import 'package:app/view/common/form_row.dart';
+import 'package:app/view/sign_up.dart';
 import 'package:app/view/tag_read.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -72,7 +73,16 @@ class _Home extends StatelessWidget {
               title: Text('Login'),
               trailing: Icon(Icons.chevron_right),
               onTap: () => Navigator.push(context, MaterialPageRoute(
-                builder: (context) => MyApp(),
+                builder: (context) => LogInPage(),
+              )),
+            ),
+          ]
+          ),FormSection(children: [
+            FormRow(
+              title: Text('Sign Up'),
+              trailing: Icon(Icons.chevron_right),
+              onTap: () => Navigator.push(context, MaterialPageRoute(
+                builder: (context) => SignUpPage(),
               )),
             ),
           ]
@@ -102,7 +112,7 @@ class _Home extends StatelessWidget {
           ]),
           FormSection(children: [
             FormRow(
-              title: Text('Information'),
+              title: Text('Information'), 
               trailing: Icon(Icons.chevron_right),
               onTap: () => Navigator.push(context, MaterialPageRoute(
                 builder: (context) => AboutPage(),

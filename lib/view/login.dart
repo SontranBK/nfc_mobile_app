@@ -2,19 +2,18 @@ import 'package:app/view/app.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 
-class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
+class LogInPage extends StatefulWidget {
+  const LogInPage({Key? key}) : super(key: key);
 
   @override
-  _MyAppState createState() => _MyAppState();
+  _LogInPageState createState() => _LogInPageState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _LogInPageState extends State<LogInPage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(title: Text('Log in screen'),),
         body: const MyStatefulWidget(),
       ),
     );
@@ -35,33 +34,39 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.all(13),
         child: ListView(
           children: <Widget>[
             Container(
                 alignment: Alignment.center,
                 padding: const EdgeInsets.all(10),
+                margin: EdgeInsets.only(top: 70),
                 child: const Text(
-                  'BK LAB manager',
+                  'Welcome Back!',
                   style: TextStyle(
                       color: Colors.blue,
                       fontWeight: FontWeight.w500,
                       fontSize: 30),
                 )),
             Container(
-                alignment: Alignment.center,
-                padding: const EdgeInsets.all(10),
-                child: const Text(
-                  'Sign in',
-                  style: TextStyle(fontSize: 20),
-                )),
+              height: 300,
+              padding: const EdgeInsets.all(35),
+              margin: EdgeInsets.only(bottom: 30),
+              alignment: Alignment.center,
+              child: Image.asset('assets/lab_logo.png'),
+            ),
             Container(
               padding: const EdgeInsets.all(10),
               child: TextField(
                 controller: nameController,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
+                decoration: InputDecoration(
+                  enabledBorder: OutlineInputBorder(
+                    // borderSide:
+                    // BorderSide(width: 3, color: Colors.greenAccent), //<-- SEE HERE
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
                   labelText: 'User Name',
+                  border: InputBorder.none,
                 ),
               ),
             ),
@@ -70,25 +75,47 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               child: TextField(
                 obscureText: true,
                 controller: passwordController,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
+                decoration: InputDecoration(
+                  enabledBorder: OutlineInputBorder(
+                    // borderSide:
+                    // BorderSide(width: 3, color: Colors.greenAccent), //<-- SEE HERE
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
                   labelText: 'Password',
                 ),
               ),
             ),
-            TextButton(
-              onPressed: () {
-                //forgot password screen
-              },
-              child: const Text(
-                'Forgot Password?',
+            Container(
+              alignment: Alignment.centerRight,
+              child: TextButton(
+                onPressed: () {
+                  //forgot password screen
+                },
+                child: const Text(
+                  'Forgot Password?',
+                  style: TextStyle(
+                    fontSize: 17
+                  ),
+                ),
               ),
             ),
+            // TextButton(
+            //   onPressed: () {
+            //     //forgot password screen
+            //   },
+            //   child: const Text(
+            //     'Forgot Password?',
+            //   ),
+            // ),
             Container(
-                height: 50,
+                height: 60,
+                margin: EdgeInsets.only(top: 60),
                 padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                 child: ElevatedButton(
-                  child: const Text('Login'),
+                  child: const Text(
+                    'Login',
+                    style: TextStyle(fontSize: 24),
+                  ),
                   onPressed: () {
                     print(nameController.text);
                     print(passwordController.text);
@@ -97,7 +124,10 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                const Text('Do not have an account?'),
+                const Text('Do not have an account?',
+                  style: TextStyle(
+                    fontSize: 18,
+                  ),),
                 TextButton(
                   child: const Text(
                     'Sign up',
