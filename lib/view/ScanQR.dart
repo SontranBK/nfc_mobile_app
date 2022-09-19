@@ -22,6 +22,9 @@ class _ScanQRCodeState extends State<ScanQRCode> {
       setState(() {
         this.qrResult = qrCode.toString();
       });
+      if(qrResult == 'LAB_CTARG_618_TaQuangBuuLibrary_HUST'){
+          qrResult = 'Chao mung ban den voi BK Lab';
+        }
     } on PlatformException {
       qrResult = 'Fail to read QR Code';
     }
