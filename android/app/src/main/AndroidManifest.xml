@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.naokiokada.nfcmanager">
+    package="bklab-manager">
     <uses-permission android:name="android.permission.NFC"/>
    <application
         android:label="BK Lab Manager"
