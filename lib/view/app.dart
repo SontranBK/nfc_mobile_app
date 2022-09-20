@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:app/pages/home.dart';
 import 'package:app/repository/repository.dart';
 import 'package:app/view/about.dart';
 import 'package:app/view/common/form_row.dart';
@@ -31,7 +32,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget example1 = SplashScreenView(
-      navigateRoute: _Home(),
+      navigateRoute: Home(),
       duration: 5000,
       imageSize: 300,
       imageSrc: "assets/splashscreen_image.png",
@@ -57,7 +58,7 @@ class App extends StatelessWidget {
   }
 }
 
-class _Home extends StatelessWidget {
+/*class _Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -123,7 +124,7 @@ class _Home extends StatelessWidget {
       ),
     );
   }
-}
+}*/
 
 ThemeData _themeData(Brightness brightness) {
   return ThemeData(
