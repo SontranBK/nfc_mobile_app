@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:intl/intl.dart';
-import 'package:app/view/app.dart';
 import 'package:provider/provider.dart';
 
 class ScanQRCode extends StatefulWidget {

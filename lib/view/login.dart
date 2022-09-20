@@ -1,4 +1,3 @@
-import 'package:app/view/app.dart';
 import 'package:app/view/sign_up.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
