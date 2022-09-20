@@ -15,3 +15,4 @@ const pink = Color(0xFFf5bde8);
 const purple = Color(0xFFd9bcff);
 const red = Color(0xFFef5013);
 const blue = Color(0xFF03A9F4);
+const light_pink = Color(0xFFF2A5B9);

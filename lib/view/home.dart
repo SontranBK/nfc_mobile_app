@@ -1,4 +1,5 @@
-import 'package:app/views/home_page.dart';
+import 'package:app/view/home_page.dart';
+import 'package:app/view/setting_page.dart';
 import 'package:app/theme/colors.dart';
 import 'package:app/view/ScanQR.dart';
 import 'package:app/view/about.dart';
@@ -41,10 +42,6 @@ class _HomeState extends State<Home> {
     return Container(
       margin: EdgeInsets.only(top: 35),
       padding: EdgeInsets.all(5),
-      decoration: BoxDecoration(
-        //shape: BoxShape.circle,
-        color: bottomBarColor,
-      ),
       child: GestureDetector(
         onTap: () {
           setState(() {
@@ -54,10 +51,14 @@ class _HomeState extends State<Home> {
         child: Container(
             padding: EdgeInsets.all(10),
             decoration: BoxDecoration(
+              border: Border.all(
+                color: primary,
+              ),
+              borderRadius: BorderRadius.all(Radius.circular(20)),
               color: primary,
               //shape: BoxShape.circle,
             ),
-            child: Icon(Icons.qr_code_scanner, color: Colors.white, size: 35,)
+            child: Icon(Icons.qr_code_scanner, color: Colors.white, size: 42,)
           ),
       ),
     );
@@ -65,7 +66,7 @@ class _HomeState extends State<Home> {
 
   Widget getBottomBar() {
     return Container(
-      height: 75,
+      height: 100,
       width: double.infinity,
       decoration: BoxDecoration(
         color: bottomBarColor,
@@ -94,7 +95,7 @@ class _HomeState extends State<Home> {
                   });
                 },
               ),
-              BottomBarItem(Icons.person_rounded, "Acccount", isActive: activeTab == 1, activeColor: primary,
+              BottomBarItem(Icons.person_rounded, "Users", isActive: activeTab == 1, activeColor: primary,
                 onTap: () {
                   setState(() {
                     activeTab = 1;
@@ -134,9 +135,9 @@ class _HomeState extends State<Home> {
         index: activeTab,
         children: <Widget>[
           HomePage(),
-          AboutPage(),
+          SettingPage(),
           ScanQRCode(),
-          AboutPage(),
+          SettingPage(),
           AboutPage(),
         ],
       );

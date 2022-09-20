@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:app/widgets/custom_appbar.dart';
 
 
 const kLightBlue = Color(0xffEBF6FF);
@@ -50,25 +51,12 @@ class _AboutPageState extends State<AboutPage> {
       _packageInfo.packageName.isEmpty ? 'Not set' : _packageInfo.packageName,
       _packageInfo.version.isEmpty ? 'Not set' : _packageInfo.version,
       _packageInfo.buildNumber.isEmpty ? 'Not set' : _packageInfo.buildNumber,
-      _packageInfo.buildSignature.isEmpty ? 'Not set' : _packageInfo.buildSignature,
+      'Not set',
       "  Son Tran BK \n  and CTARG team",
     ];
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text('App Information'),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(
-              Icons.info_outlined,
-              color: Colors.white,
-            ),
-            onPressed: () {
-              // do something
-            },
-          )
-        ],
-      ),
+      appBar: CustomAppbar(title: "App Information!"),
       body:Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Center(
@@ -88,7 +76,7 @@ class _AboutPageState extends State<AboutPage> {
               color: kLightBlue,
             ),
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -12,45 +12,52 @@ class ActionBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  
-      Container(
+    return
+    GestureDetector(
+      onTap: () {Navigator.push(
+          context, MaterialPageRoute(
+        builder: (context) => linkscreen,
+      )
+      );},
+      child: Container(
         // width: double.infinity,
-        height: 130,
-        padding: EdgeInsets.only(top: 15, bottom: 10, left: 5, right: 5),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          color: this.bgColor,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.1),
-              spreadRadius: 1,
-              blurRadius: 1,
-              offset: Offset(1, 1), // changes position of shadow
-            ),
-          ],
-        ),
-        child: Column(
-          children: [
-            Container(
-              alignment: Alignment.center,
-              padding: EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: secondary
+          height: 160,
+          padding: EdgeInsets.only(top: 20, bottom: 14, left: 7, right: 7),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color: this.bgColor,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.1),
+                spreadRadius: 1,
+                blurRadius: 1,
+                offset: Offset(1, 1), // changes position of shadow
               ),
-              child: IconButton(
-                icon: Icon(icon),
-                iconSize: 32,
-                color: color,
-                onPressed: () {Navigator.push(context, MaterialPageRoute(
-                  builder: (context) => linkscreen,
-                ));},
+            ],
+          ),
+          child: Column(
+            children: [
+              Container(
+                alignment: Alignment.center,
+                padding: EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: secondary
+                ),
+                child: IconButton(
+                  icon: Icon(icon),
+                  iconSize: 38,
+                  color: color,
+                  onPressed: () {Navigator.push(context, MaterialPageRoute(
+                    builder: (context) => linkscreen,
+                  ));},
+                ),
               ),
-            ),
-            SizedBox(height: 13),
-            Text(title, style: TextStyle(color: color, fontSize: 13, fontWeight: FontWeight.w600),)
-          ],
-        ) 
-      );
+              SizedBox(height: 16),
+              Text(title, style: TextStyle(color: color, fontSize: 16, fontWeight: FontWeight.w600),)
+            ],
+          )
+      ),
+    );
   }
 }

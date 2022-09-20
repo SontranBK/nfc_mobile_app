@@ -35,7 +35,7 @@ class BottomBarItem extends StatelessWidget {
                 ) 
                 :
                 new Icon(icon, size: 34, color: isActive ? activeColor : activeColor.withOpacity(.4),),
-                Text(title, style: TextStyle(fontSize: 10, color: isActive ? activeColor : activeColor.withOpacity(.5))),
+                Text(title, style: TextStyle(fontSize: 14, color: isActive ? activeColor : activeColor.withOpacity(.5))),
               ],
             ),
     );  
