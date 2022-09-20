@@ -1,4 +1,3 @@
-
 import 'package:app/view/GenerateQR.dart';
 import 'package:app/view/ScanQR.dart';
 import 'package:app/view/login.dart';
@@ -103,65 +102,11 @@ class _HomePageState extends State<HomePage> {
       child: Column(
         children: [
           getAppBar(),
-          /*SizedBox(height: 25,),
-          Padding(
-            padding: const EdgeInsets.only(left: 15, right: 15),
-            child: Stack(
-              clipBehavior: Clip.none,
-              children: [
-                BalanceCard(),
-                Positioned(
-                  top: 100,
-                  left: 0, right: 0,
-                  child: Container(
-                    padding: EdgeInsets.all(5),
-                    decoration: BoxDecoration(
-                      color: secondary,
-                      shape: BoxShape.circle,
-                      border: Border.all()
-                    ),
-                    child: Icon(Icons.add)
-                  )
-                )
-            ],
-            )
-          ),*/
           SizedBox(height: 50,),
           getActions(),
           SizedBox(height: 50,),
           getActions2(),
 
-          /*Container(
-            padding: EdgeInsets.only(left: 20),
-            alignment: Alignment.centerLeft,
-            child: Text("Send Again", 
-            style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),)
-          ),
-          SizedBox(height: 15,),
-          Padding(padding: EdgeInsets.only(left: 15),
-            child: getRecentUsers(),
-          ),
-          SizedBox(height: 25,),
-          Container(
-            padding: EdgeInsets.only(left: 20, right: 15),
-            alignment: Alignment.centerLeft,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text("Transactions", style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),),
-                Expanded(
-                  child: Container(
-                    alignment: Alignment.centerRight,
-                    child: Text("Today", style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),))
-                ),
-                Icon(Icons.expand_more_rounded),
-              ],
-            )
-          ),
-          SizedBox(height: 15,),
-          Padding(padding: EdgeInsets.only(left: 15),
-            child: getTransanctions(),
-          ),*/
         ],
       ),
     );

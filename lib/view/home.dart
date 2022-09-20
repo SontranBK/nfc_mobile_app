@@ -1,4 +1,4 @@
-import 'package:app/pages/home_page.dart';
+import 'package:app/views/home_page.dart';
 import 'package:app/theme/colors.dart';
 import 'package:app/view/ScanQR.dart';
 import 'package:app/view/about.dart';
@@ -94,7 +94,7 @@ class _HomeState extends State<Home> {
                   });
                 },
               ),
-              BottomBarItem(Icons.info, "Info", isActive: activeTab == 1, activeColor: primary,
+              BottomBarItem(Icons.person_rounded, "Acccount", isActive: activeTab == 1, activeColor: primary,
                 onTap: () {
                   setState(() {
                     activeTab = 1;
@@ -115,7 +115,7 @@ class _HomeState extends State<Home> {
                   });
                 },
               ),
-              BottomBarItem(Icons.person_rounded, "Acc", isActive: activeTab == 4, activeColor: primary,
+              BottomBarItem(Icons.info, "Info", isActive: activeTab == 4, activeColor: primary,
                 onTap: () {
                   setState(() {
                     activeTab = 4;
@@ -136,28 +136,8 @@ class _HomeState extends State<Home> {
           HomePage(),
           AboutPage(),
           ScanQRCode(),
-          LogInPage(),
-          SignUpPage(),
-          /*Center(
-            child: Text("Wallet",style: TextStyle(
-              fontSize: 35
-            ),),
-          ),
-          Center(
-            child: Text("New",style: TextStyle(
-              fontSize: 35
-            ),),
-          ),
-          Center(
-            child: Text("Statistics",style: TextStyle(
-              fontSize: 35
-            ),),
-          ),
-           Center(
-            child: Text("Account",style: TextStyle(
-              fontSize: 35
-            ),),
-          )*/
+          AboutPage(),
+          AboutPage(),
         ],
       );
   }
