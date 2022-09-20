@@ -2,7 +2,7 @@ import 'package:app/view/sign_up.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:splash_screen_view/SplashScreenView.dart';
-import 'package:app/pages/home.dart';
+import 'package:app/view/home.dart';
 
 class LogInPage extends StatefulWidget {
   const LogInPage({Key? key}) : super(key: key);
