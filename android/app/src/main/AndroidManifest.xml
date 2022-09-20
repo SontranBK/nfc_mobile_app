@@ -2,7 +2,7 @@
     package="com.naokiokada.nfcmanager">
     <uses-permission android:name="android.permission.NFC"/>
    <application
-        android:label="NFC Manager"
+        android:label="BK Lab Manager"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name="com.naokiokada.nfcmanager.MainActivity"
