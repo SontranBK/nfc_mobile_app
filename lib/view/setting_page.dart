@@ -5,6 +5,7 @@ import 'package:app/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:app/view/empty_page.dart';
+import 'package:app/view/change_password.dart';
 
 class SettingPage extends StatefulWidget {
   const SettingPage({ Key? key }) : super(key: key);
@@ -63,7 +64,7 @@ class _SettingPageState extends State<SettingPage> {
           SizedBox(width: 30,),
           Expanded(
             child: GestureDetector(
-              onTap: () => launch('https://www.hust.edu.vn'),
+              onTap: () => launch('https://forms.gle/js5fdh2H4F7HHw4MA'),
               child: Container(
                 // width: double.infinity,
                   height: 160,
@@ -93,7 +94,7 @@ class _SettingPageState extends State<SettingPage> {
                           icon: Icon(Icons.rate_review),
                           iconSize: 38,
                           color: Colors.black,
-                          onPressed:() => launch('https://www.hust.edu.vn'),
+                          onPressed:() => launch('https://forms.gle/js5fdh2H4F7HHw4MA'),
                         ),
                       ),
                       SizedBox(height: 16),
@@ -115,7 +116,7 @@ class _SettingPageState extends State<SettingPage> {
         children: [
           SizedBox(width: 30,),
           Expanded(
-              child: ActionBox(title: "Change Your Password", icon: Icons.key, bgColor: yellow, linkscreen: EmptyPage())
+              child: ActionBox(title: "Change Your Password", icon: Icons.key, bgColor: yellow, linkscreen: ChagePasswordPage())
           ),
           SizedBox(width: 30,),
         ],

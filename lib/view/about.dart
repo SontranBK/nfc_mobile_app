@@ -49,7 +49,7 @@ class _AboutPageState extends State<AboutPage> {
     final List<String>content_name  = [
       _packageInfo.appName.isEmpty ? 'Not set' : _packageInfo.appName,
       "bklab-mana",
-      _packageInfo.version.isEmpty ? 'Not set' : _packageInfo.version,
+      "1.0.0",
       _packageInfo.buildNumber.isEmpty ? 'Not set' : _packageInfo.buildNumber,
       'Not set',
       "  Son Tran BK \n  and CTARG",
