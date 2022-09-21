@@ -48,11 +48,11 @@ class _AboutPageState extends State<AboutPage> {
     ];
     final List<String>content_name  = [
       _packageInfo.appName.isEmpty ? 'Not set' : _packageInfo.appName,
-      _packageInfo.packageName.isEmpty ? 'Not set' : _packageInfo.packageName,
+      "bklab-mana",
       _packageInfo.version.isEmpty ? 'Not set' : _packageInfo.version,
       _packageInfo.buildNumber.isEmpty ? 'Not set' : _packageInfo.buildNumber,
       'Not set',
-      "  Son Tran BK \n  and CTARG team",
+      "  Son Tran BK \n  and CTARG",
     ];
 
     return Scaffold(

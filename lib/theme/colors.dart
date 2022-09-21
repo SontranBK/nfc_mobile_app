@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 const primary = Colors.black;
 const secondary = Colors.white;
 const mainColor = Color(0xFF000000);
-const appBgColor = Colors.white;
+const appBgColor = Color(0xFFd7f5fa);
 const appBgColorPrimary = Color(0xFF7c62fe);
 const appBgColorSecondary = Color(0xFF7ec1fe);
 const bottomBarColor = Colors.white;

@@ -2,6 +2,7 @@ import 'package:app/view/home_page.dart';
 import 'package:app/view/setting_page.dart';
 import 'package:app/theme/colors.dart';
 import 'package:app/view/ScanQR.dart';
+import 'package:app/view/user_page.dart';
 import 'package:app/view/about.dart';
 import 'package:app/view/login.dart';
 import 'package:app/view/sign_up.dart';
@@ -135,7 +136,7 @@ class _HomeState extends State<Home> {
         index: activeTab,
         children: <Widget>[
           HomePage(),
-          SettingPage(),
+          UserPage(),
           ScanQRCode(),
           SettingPage(),
           AboutPage(),

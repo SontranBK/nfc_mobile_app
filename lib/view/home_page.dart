@@ -6,6 +6,7 @@ import 'package:app/widgets/action_box.dart';
 import 'package:app/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:app/view/tag_read.dart';
+import 'package:app/view/empty_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({ Key? key }) : super(key: key);
@@ -19,7 +20,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
      return 
       Scaffold(
-        backgroundColor: Colors.transparent,
+        backgroundColor: secondary,
         appBar: CustomAppbar(title: "Welcome to BK Lab Manager!"),
         body: getBody(),
       );
@@ -66,11 +67,11 @@ class _HomePageState extends State<HomePage> {
         children: [
           SizedBox(width: 25,),
           Expanded(
-              child: ActionBox(title: "User Profile", icon: Icons.contact_page, bgColor: yellow, linkscreen: GenerateQRPage())
+              child: ActionBox(title: "User Profile", icon: Icons.contact_page, bgColor: yellow, linkscreen: EmptyPage())
           ),
           SizedBox(width: 25,),
           Expanded(
-              child: ActionBox(title: "Users Status", icon: Icons.manage_accounts, bgColor: blue, linkscreen: GenerateQRPage())
+              child: ActionBox(title: "Users Status", icon: Icons.manage_accounts, bgColor: blue, linkscreen: EmptyPage())
           ),
           SizedBox(width: 25,),
         ],

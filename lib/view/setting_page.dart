@@ -4,6 +4,7 @@ import 'package:app/widgets/action_box.dart';
 import 'package:app/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:app/view/empty_page.dart';
 
 class SettingPage extends StatefulWidget {
   const SettingPage({ Key? key }) : super(key: key);
@@ -17,7 +18,7 @@ class _SettingPageState extends State<SettingPage> {
   Widget build(BuildContext context) {
      return 
       Scaffold(
-        backgroundColor: Colors.transparent,
+        backgroundColor: secondary,
         appBar: CustomAppbar(title: "App Setting!"),
         body: getBody(),
       );
@@ -28,10 +29,12 @@ class _SettingPageState extends State<SettingPage> {
     SingleChildScrollView(
       child: Column(
         children: [
-          SizedBox(height: 50,),
+          SizedBox(height: 40,),
           getActions(),
-          SizedBox(height: 50,),
+          SizedBox(height: 40,),
           getActions2(),
+          SizedBox(height: 40,),
+          getActions3(),
 
         ],
       ),
@@ -51,7 +54,6 @@ class _SettingPageState extends State<SettingPage> {
         ],
       );
   }
-  
 
   getActions2(){
     return
@@ -100,6 +102,20 @@ class _SettingPageState extends State<SettingPage> {
                   )
               ),
             )
+          ),
+          SizedBox(width: 30,),
+        ],
+      );
+  }
+
+  getActions3(){
+    return
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          SizedBox(width: 30,),
+          Expanded(
+              child: ActionBox(title: "Change Your Password", icon: Icons.key, bgColor: yellow, linkscreen: EmptyPage())
           ),
           SizedBox(width: 30,),
         ],

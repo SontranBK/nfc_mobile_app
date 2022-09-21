@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'dart:typed_data';
-
+import 'package:app/theme/colors.dart';
 import 'package:app/utility/extensions.dart';
 import 'package:app/view/common/form_row.dart';
 import 'package:app/view/common/nfc_session.dart';
@@ -49,7 +49,18 @@ class TagReadPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Read NFC cards'),
+        title: Text('Read NFC and e-tag'),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.style,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              // do something
+            },
+          )
+        ],
       ),
       body: ListView(
         padding: EdgeInsets.all(2),

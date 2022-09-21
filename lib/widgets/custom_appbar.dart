@@ -50,7 +50,7 @@ class _CustomAppbarState extends State<CustomAppbar> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Hello Son Tran BK,", style: TextStyle(color: Colors.grey, fontSize: 16),),
+                      Text("Hello Son Tran BK,", style: TextStyle(color: Colors.grey[700], fontSize: 16),),
                       SizedBox(height: 5,),
                       Text(widget.title, style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20),),
                     ],
