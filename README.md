@@ -9,9 +9,57 @@ For all release features and publised product UI, check out [release page](https
 * 【Sep 16, 2022】 version 0.2.0-alpha (pre-released version)
 * 【Sep 22, 2022】 first version release
 ## 3. Reproducing process
-- Until version 0.2.0-alpha (16 Sep 2022), we support iOS, Android, Windows mobile, tablet platform
-- Easiest method to reprodue product on Android is by building with Android Studio, on iOS by building with Xcode (MacOS required)
+<details>
+<summary> 3.1. Support plaftforms</summary>
+
+- We support iOS, Android, Windows mobile, tablet platform
 - Tested on iphone XS Max, Redmi 9A and other iOS, Android devices.
+</details>
+
+<details>
+<summary> 3.2. Reproduce steps on Android:</summary>
+
+- Reproduce steps on physical devices: 
+    1. Enable Developer Options on Android device setting (USB debug, install via USB). 
+    2. Install Android Studio and plug your device into your computer.
+    3. Open Android Studio and run app with Android Studio.
+    4. If error return, run with following commands: flutter run --no-sound-null-safety
+- Reproduce steps on virtual devices:
+    1. Install Android Studio, create a virtual device on Android Studio
+    2. Run app with Android Studio on virtual device
+</details>
+
+<details>
+<summary> 3.3. Reproduce steps on iOS (physical device):</summary>
+
+1. MacOS required, install XCode on MacOS device, connect your device to MacOS
+2. In Terminal, navigate to this folder, type in:
+```shell
+open ios/Runner.xcworkspace
+```
+3. In XCode, "Product" -> "Build for" -> "Profiling"
+4. In XCode, "Product" -> "Perform Actions" -> "Profile Without Building"
+5. In iOS device, open Setting, "Trust this developer"
+</details>
+
+<details>
+<summary>  3.3. Reproduce steps using Command line:</summary>
+
+- You can also build apk and install app without using Android Studio, by using Terminal Command Line. 
+- Command line for build Android apk:
+```shell
+flutter build apk --release --no-sound-null-safety
+```
+- Command line for build iOS:
+```shell
+flutter build ios --no-sound-null-safety                          
+```
+- Command line for run app on Android, iOS:
+```shell
+flutter run --no-sound-null-safety
+```
+</details>
+
 ## 4. Developing detail
 - Product uses Dart language, Flutter framework
 - Check out deps used in [pubspec file](pubspec.yaml)
