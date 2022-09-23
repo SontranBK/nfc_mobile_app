@@ -9,7 +9,7 @@ class _EmptyPageState extends State<EmptyPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('An Empty Page'),
+        title: Text('Features Coming Soon!'),
         actions: <Widget>[
           IconButton(
             icon: Icon(
@@ -23,10 +23,29 @@ class _EmptyPageState extends State<EmptyPage> {
         ],
       ),
       backgroundColor: Colors.white,
-      body: const Center(
-        child: Text('  This is an empty page.\n  This page is created for future features reservation.'
-            '\n  There will be a feature here in the near future.\n  We appreciate your patience'),
-      ),
+      body: Center(
+        child: Column(
+          children: <Widget>[
+            SizedBox(height: 100,),
+            Icon(
+              Icons.developer_mode,
+              size: 200,
+            ),
+            SizedBox(height: 100,),
+            Center(
+              child: Text('COMING SOON !!!\nThis feature is still in developing process.'
+                  '\nThere will be a feature here in the near future.\nWe appreciate and thank you for your patience!',
+                style: const TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xff006ED3),
+                ),
+              ),
+            ),
+          ], //<Widget>[]
+        ), //Column
+      ), //Center
     );
   }
 }
+
