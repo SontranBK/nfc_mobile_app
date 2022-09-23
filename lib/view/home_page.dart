@@ -7,6 +7,7 @@ import 'package:app/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:app/view/tag_read.dart';
 import 'package:app/view/empty_page.dart';
+import 'package:app/view/hive.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({ Key? key }) : super(key: key);
@@ -67,7 +68,7 @@ class _HomePageState extends State<HomePage> {
         children: [
           SizedBox(width: 25,),
           Expanded(
-              child: ActionBox(title: "User Profile", icon: Icons.contact_page, bgColor: yellow, linkscreen: EmptyPage())
+              child: ActionBox(title: "User Profile", icon: Icons.contact_page, bgColor: yellow, linkscreen: MyHomePage())
           ),
           SizedBox(width: 25,),
           Expanded(
