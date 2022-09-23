@@ -60,9 +60,28 @@ flutter run --no-sound-null-safety
 ```
 </details>
 
-## 4. Developing detail
-- Product uses Dart language, Flutter framework
+## 4. Developer guide
+<details>
+<summary> 4.1. Language and framework:</summary>
+
+- This product is written in Dart language, Flutter framework
+
+- A few resources to get you started if this is your first Flutter project:
+    - [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
+    - [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+
+
+- For help getting started with Flutter development, view the
+[online documentation](https://docs.flutter.dev/), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.
+</details>
+
+<details>
+<summary> 4.2. Deps and source code architecture:</summary>
+
 - Check out deps used in [pubspec file](pubspec.yaml)
+</details>
+
 ## 5. Authors and credits:
 In research and development process, all credits go to ***Son Tran BK (1st author), Duc Anh BK (2nd author) and CTARG LAB members***, in EEE, HUST (Hanoi University of Science and Technology), Ha Noi, Viet Nam
 
