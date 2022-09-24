@@ -229,11 +229,11 @@ class _SignPageState extends State<SignPage> {
         _passIvalid = false;
       }
 
-      if(!_passIvalid && !_userInvalid){
-        Navigator.push(context, MaterialPageRoute(
-          builder: (context) => Home(),
-        ));
-      }
+      // if(!_passIvalid && !_userInvalid){
+      //   Navigator.push(context, MaterialPageRoute(
+      //     builder: (context) => Home(),
+      //   ));
+      // }
     });
   }
 }
