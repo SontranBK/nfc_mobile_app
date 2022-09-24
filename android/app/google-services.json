@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "24235156039",
+    "firebase_url": "https://nfcmobileapp-main-default-rtdb.firebaseio.com",
+    "project_id": "nfcmobileapp-main",
+    "storage_bucket": "nfcmobileapp-main.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:24235156039:android:7cb33bae009c3eaf444762",
+        "android_client_info": {
+          "package_name": "com.naokiokada.nfcmanager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "24235156039-fkf1bivvku2nk3crtjb9k2rk0j9jvj9m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-whM0ePdmNvxsbOaT90ZECOeX2ZcrZMc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "24235156039-fkf1bivvku2nk3crtjb9k2rk0j9jvj9m.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "24235156039-1ropfm3bkv5ooov2e6l454c9rg9blebg.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.naokiokada.nfcmanager"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
