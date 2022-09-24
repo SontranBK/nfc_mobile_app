@@ -1,6 +1,11 @@
+import 'package:app/view/home.dart';
 import 'package:app/view/login.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:app/view/auth_bloc.dart.dart';
+
+import 'auth_bloc.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -10,10 +15,10 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  TextEditingController nameController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  TextEditingController fullnameController = TextEditingController();
-  TextEditingController confirn_passwordController = TextEditingController();
+  TextEditingController _nameController = TextEditingController();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passController = TextEditingController();
+  TextEditingController _passcomfirnController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +53,7 @@ class _SignUpPageState extends State<SignUpPage> {
               Container(
                 padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
                 child: TextField(
-                  controller: fullnameController,
+                  controller: _nameController,
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
                       // borderSide:
@@ -62,7 +67,7 @@ class _SignUpPageState extends State<SignUpPage> {
               Container(
                 padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
                 child: TextField(
-                  controller: nameController,
+                  controller: _emailController,
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
                       // borderSide:
@@ -77,7 +82,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
                 child: TextField(
                   obscureText: true,
-                  controller: passwordController,
+                  controller: _passController,
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
                       // borderSide:
@@ -92,7 +97,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
                 child: TextField(
                   obscureText: true,
-                  controller: confirn_passwordController,
+                  controller: _passcomfirnController,
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
                       // borderSide:
@@ -135,8 +140,11 @@ class _SignUpPageState extends State<SignUpPage> {
                       style: TextStyle(fontSize: 24),
                     ),
                     onPressed: () {
-                      print(nameController.text);
-                      print(passwordController.text);
+                      _onSignUpClicked();
+                        print(_nameController.text);
+                        print(_emailController.text);
+                        print(_passController.text);
+                        print(_passcomfirnController.text);
                     },
                   )),
               Row(
@@ -163,5 +171,24 @@ class _SignUpPageState extends State<SignUpPage> {
           )),
     );
 
+  }
+  _onSignUpClicked() {
+    var isValid = authBloc.isValid(_nameController.text, _emailController.text,
+        _passController.text, _passcomfirnController.text);
+    if (isValid) {
+      // create user
+      // loading dialog
+      // LoadingDialog.showLoadingDialog(context, 'Loading...');
+      authBloc.signUp(_emailController.text, _passController.text,
+          _passcomfirnController.text, _nameController.text, () {
+            // LoadingDialog.hideLoadingDialog(context);
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => LogInPage()));
+          }, (msg) {
+            // LoadingDialog.hideLoadingDialog(context);
+            // MsgDialog.showMsgDialog(context, "Sign-In", msg);
+            // show msg dialog
+          });
+    }
   }
 }

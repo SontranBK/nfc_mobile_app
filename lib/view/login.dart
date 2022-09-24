@@ -1,8 +1,19 @@
+import 'dart:async';
 import 'package:app/view/sign_up.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:splash_screen_view/SplashScreenView.dart';
 import 'package:app/view/home.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+import '../main.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+}
 
 class LogInPage extends StatefulWidget {
   const LogInPage({Key? key}) : super(key: key);
@@ -12,6 +23,8 @@ class LogInPage extends StatefulWidget {
 }
 
 class _LogInPageState extends State<LogInPage> {
+    final Future<FirebaseApp> _initialization = Firebase.initializeApp();
+
   @override
   Widget build(BuildContext context) {
     Widget example1 = SplashScreenView(
@@ -49,8 +62,35 @@ class SignPage extends StatefulWidget {
 }
 
 class _SignPageState extends State<SignPage> {
+  bool showPass = false;
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  var _userNameError = "Tài khoản không hợp lệ";
+  var _passwordError = "Mật khẩu phải trên 6 kí tự ";
+  var _userInvalid = false;
+  var _passIvalid = false;
+
+  Widget _entryField(
+      bool obscure,
+      String title,
+      TextEditingController controller,
+      var users,
+      var error,
+      ) {
+    return TextField(
+      obscureText: obscure,
+      controller: controller,
+      decoration: InputDecoration(
+        errorText: users ? error : null,
+        enabledBorder: OutlineInputBorder(
+          // borderSide:
+          // BorderSide(width: 3, color: Colors.greenAccent), //<-- SEE HERE
+          borderRadius: BorderRadius.circular(20.0),
+        ),
+        labelText: title,
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -80,32 +120,26 @@ class _SignPageState extends State<SignPage> {
                 ),
                 Container(
                   padding: const EdgeInsets.all(10),
-                  child: TextField(
-                    controller: nameController,
-                    decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                        // borderSide:
-                        // BorderSide(width: 3, color: Colors.greenAccent), //<-- SEE HERE
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      labelText: 'User Name',
-                      border: InputBorder.none,
-                    ),
-                  ),
+                  child: _entryField(false,'User Name', nameController,_userInvalid,_userNameError)
                 ),
                 Container(
                   padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-                  child: TextField(
-                    obscureText: true,
-                    controller: passwordController,
-                    decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                        // borderSide:
-                        // BorderSide(width: 3, color: Colors.greenAccent), //<-- SEE HERE
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      labelText: 'Password',
-                    ),
+                  child: Stack(
+                    alignment: AlignmentDirectional.centerEnd,
+                    children: <Widget>[
+                      _entryField(!showPass,'Password', passwordController,_passIvalid,_passwordError),
+                      // GestureDetector(
+                      //   onTap: onShowPass,
+                      //   child: Text(
+                      //     showPass ? "Hide" : "Show",
+                      //     style: TextStyle(
+                      //       color: Colors.blue,
+                      //       fontSize: 14,
+                      //       fontWeight: FontWeight.bold,
+                      //     ),
+                      //   ),
+                      // )
+                    ],
                   ),
                 ),
                 Container(
@@ -140,9 +174,9 @@ class _SignPageState extends State<SignPage> {
                         style: TextStyle(fontSize: 24),
                       ),
                       onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(
-                          builder: (context) => Home(),
-                        ));
+                        _onLoginClick();
+                        print(nameController.text);
+                        print(passwordController.text);
                       },
                     )),
                 Row(
@@ -168,6 +202,39 @@ class _SignPageState extends State<SignPage> {
               ],
             ))
     );
+  }
+  
+  void _onLoginClick() {
+    String email = nameController.text;
+    String pass = passwordController.text;
+    var authBloc = MyApp.of(context)?.authBloc;
+    // LoadingDialog.showLoadingDialog(context, "Loading...");
+    authBloc?.signIn(email, pass, () {
+      // LoadingDialog.hideLoadingDialog(context);
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => Home()));
+    }, (msg) {
+      // LoadingDialog.hideLoadingDialog(context);
+      // MsgDialog.showMsgDialog(context, "Sign-In", msg);
+    });
+    setState((){
+      if(nameController.text.length < 6 || !nameController.text.contains('@')){
+        _userInvalid = true;
+      }else{
+        _userInvalid = false;
+      }
+      if(passwordController.text.length < 5){
+        _passIvalid = true;
+      }else{
+        _passIvalid = false;
+      }
+
+      if(!_passIvalid && !_userInvalid){
+        Navigator.push(context, MaterialPageRoute(
+          builder: (context) => Home(),
+        ));
+      }
+    });
   }
 }
 ThemeData _themeData(Brightness brightness) {
