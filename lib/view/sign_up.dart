@@ -3,7 +3,7 @@ import 'package:app/view/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:app/view/auth_bloc.dart.dart';
+import 'package:app/view/auth_bloc.dart';
 
 import 'auth_bloc.dart';
 
