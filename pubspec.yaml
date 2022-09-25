@@ -18,7 +18,7 @@ dependencies:
   url_launcher:
   cupertino_icons: ^1.0.2
   qr_flutter: ^4.0.0
-  flutter_barcode_scanner: ^1.0.1
+  flutter_barcode_scanner: ^2.0.0
   animated_text_kit: ^4.2.2
   qr_code_scanner: any
   splash_screen_view: ^3.0.0
@@ -30,7 +30,11 @@ dependencies:
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   path_provider: ^2.0.11
-
+  firebase_auth: ^3.8.0
+  firebase_core: ^1.22.0
+  firebase_core_web: any
+  cloud_firestore: ^3.4.8
+  firebase_database: ^9.1.5
 
 
 dev_dependencies:
