@@ -4,6 +4,8 @@
 An app for small and medium organizations (SME) manager, with NFC-tag, e-tag and QR code features supported. ADMIN right can create and manager user accounts, user not logged in shall stay guest user. Main features:
 - Agency in-out gate control with QR code and e-tag
 - User info sharing with personal QR code
+- Display and stats for users' status (online, offline)
+- Authiencation log-in and sign-in
 ## 2. Updates and releases!!!
 For all release features and publised product UI, check out [release page](https://github.com/SontranBK/nfc_mobile_app/releases)
 * 【Sep 16, 2022】 version 0.2.0-alpha (pre-released version)
