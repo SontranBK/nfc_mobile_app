@@ -1,5 +1,6 @@
 import 'package:app/view/GenerateQR.dart';
 import 'package:app/view/ScanQR.dart';
+import 'package:app/view/hive.dart';
 import 'package:app/view/login.dart';
 import 'package:app/theme/colors.dart';
 import 'package:app/widgets/action_box.dart';
@@ -7,7 +8,7 @@ import 'package:app/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:app/view/tag_read.dart';
 import 'package:app/view/empty_page.dart';
-
+import 'hive.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({ Key? key }) : super(key: key);
@@ -22,7 +23,7 @@ class _HomePageState extends State<HomePage> {
      return 
       Scaffold(
         backgroundColor: secondary,
-        appBar: CustomAppbar(title: "Welcome to BK Lab Manager!"),
+        appBar: CustomAppbar(title: "Welcome to BK Lab!"),
         body: getBody(),
       );
   }
@@ -68,7 +69,7 @@ class _HomePageState extends State<HomePage> {
         children: [
           SizedBox(width: 25,),
           Expanded(
-              child: ActionBox(title: "User Profile", icon: Icons.contact_page, bgColor: yellow, linkscreen: EmptyPage())
+              child: ActionBox(title: "User Profile", icon: Icons.contact_page, bgColor: yellow, linkscreen: MyApp())
           ),
           SizedBox(width: 25,),
           Expanded(

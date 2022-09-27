@@ -6,7 +6,10 @@ class GenerateQRPage extends StatefulWidget {
   _GenerateQRPageState createState() => _GenerateQRPageState();
 }
 class _GenerateQRPageState extends State<GenerateQRPage> {
-  TextEditingController controller = TextEditingController();
+  TextEditingController phonecontroller = TextEditingController();
+  TextEditingController teamscontroller = TextEditingController();
+  TextEditingController fbcontroller = TextEditingController();
+  TextEditingController istacontroller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +34,7 @@ class _GenerateQRPageState extends State<GenerateQRPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               QrImage(
-                data: controller.text,
+                data: phonecontroller.text + " | " + teamscontroller.text + " | " + fbcontroller.text + " | " + istacontroller.text,
                 size: 300,
                 embeddedImage: AssetImage('images/logo.png'),
                 embeddedImageStyle: QrEmbeddedImageStyle(
@@ -41,10 +44,40 @@ class _GenerateQRPageState extends State<GenerateQRPage> {
               Container(
                 margin: EdgeInsets.all(20),
                 child: TextField(
-                  controller: controller,
+                  controller: phonecontroller,
                   decoration: InputDecoration(
-                      border: OutlineInputBorder(borderSide: const BorderSide(color: Colors.grey, width: 0.0),), 
-                      labelText: 'Enter URL'
+                      border: OutlineInputBorder(borderSide: const BorderSide(color: Colors.grey, width: 0.0),),
+                      labelText: 'Phone Number '
+                  ),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.all(20),
+                child: TextField(
+                  controller: teamscontroller,
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(borderSide: const BorderSide(color: Colors.grey, width: 0.0),),
+                      labelText: 'Ms Teams'
+                  ),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.all(20),
+                child: TextField(
+                  controller: fbcontroller,
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(borderSide: const BorderSide(color: Colors.grey, width: 0.0),),
+                      labelText: 'Facebook URL'
+                  ),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.all(20),
+                child: TextField(
+                  controller: istacontroller,
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(borderSide: const BorderSide(color: Colors.grey, width: 0.0),),
+                      labelText: 'Instagram URL'
                   ),
                 ),
               ),

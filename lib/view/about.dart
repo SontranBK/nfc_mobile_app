@@ -62,7 +62,7 @@ class _AboutPageState extends State<AboutPage> {
       child: Center(
       child: GridView.builder(
         itemCount: title_name.length,
-        physics: const NeverScrollableScrollPhysics(),
+        //physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisSpacing: 15,
@@ -103,7 +103,7 @@ class _AboutPageState extends State<AboutPage> {
                       Text(
                         content_name[index],
                         style: const TextStyle(
-                          fontSize: 13.5,
+                          fontSize: 15,
                           fontWeight: FontWeight.bold,
                           color: Color(0xff006ED3),
                         ),
