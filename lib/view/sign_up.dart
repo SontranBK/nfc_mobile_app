@@ -3,9 +3,9 @@ import 'package:app/view/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:app/view/auth_bloc.dart';
-
+import 'load_msg_dilog.dart';
 import 'auth_bloc.dart';
+
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -15,13 +15,18 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-
   AuthBloc authBloc = new AuthBloc();
+
   TextEditingController _nameController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passController = TextEditingController();
   TextEditingController _passcomfirnController = TextEditingController();
 
+  @override
+  void dispose(){
+    authBloc.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -175,9 +180,9 @@ class _SignUpPageState extends State<SignUpPage> {
 
   }
   _onSignUpClicked() {
-    var isValid = authBloc.isValid(_nameController.text, _emailController.text,
-        _passController.text, _passcomfirnController.text);
-    if (isValid) {
+    // var isValid = authBloc.isValid(_nameController.text, _emailController.text,
+    //     _passController.text, _passcomfirnController.text);
+    // if (isValid) {
       // create user
       // loading dialog
       // LoadingDialog.showLoadingDialog(context, 'Loading...');
@@ -188,9 +193,9 @@ class _SignUpPageState extends State<SignUpPage> {
                 context, MaterialPageRoute(builder: (context) => LogInPage()));
           }, (msg) {
             // LoadingDialog.hideLoadingDialog(context);
-            // MsgDialog.showMsgDialog(context, "Sign-In", msg);
+            MsgDialog.showMsgDialog(context, "Sign-Up", msg);
             // show msg dialog
           });
     }
-  }
+  // }
 }

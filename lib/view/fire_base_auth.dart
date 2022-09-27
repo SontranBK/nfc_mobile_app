@@ -1,64 +1,82 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 
+import 'auth_bloc.dart';
+
 class FirAuth {
-  final FirebaseAuth _fireBaseAuth = FirebaseAuth.instance;
+  FirebaseAuth _fireBaseAuth = FirebaseAuth.instance;
 
   void signUp(String email, String pass, String name, String passcomfirn,
       Function onSuccess, Function(String) onRegisterError) {
     _fireBaseAuth
         .createUserWithEmailAndPassword(email: email, password: pass)
         .then((user) {
-       // _createUser(user.uid, name, passcomfirn, onSuccess, onRegisterError);
+          print(user);
+      _createUser(user.user!.uid, name, passcomfirn, onSuccess, onRegisterError);
     }).catchError((err) {
       print("err: " + err.toString());
       _onSignUpErr(err.code, onRegisterError);
     });
   }
 
-  void signIn(String email, String pass, Function onSuccess,
-      Function(String) onSignInError) {
+  signIn(String email, String pass, Function onSuccess,
+      Function(String) onSignInError) async {
     _fireBaseAuth
         .signInWithEmailAndPassword(email: email, password: pass)
         .then((user) {
       onSuccess();
     }).catchError((err) {
       print("err: " + err.toString());
-      onSignInError("Sign-In fail, please try again");
+      _onLogninErr(err.code, onSignInError);
     });
   }
 
   _createUser(String userId, String name, String passcomfirn, Function onSuccess,
-      Function(String) onRegisterError) {    var user = Map<String, String>();
-    user["name"] = name;
-    user["phone"] = passcomfirn;
+      Function(String) onRegisterError) {
+    var user = {
+      "name" : name,
+      "password" : passcomfirn,
+    };
 
     // ignore: deprecated_member_use
     var ref = FirebaseDatabase.instance.reference().child("users");
-    ref.child(userId).set(user).then((vl) {
+    ref.child(userId).set(user).then((user) {
       print("on value: SUCCESSED");
       onSuccess();
     }).catchError((err) {
       print("err: " + err.toString());
-      onRegisterError("SignUp fail, please try again");
+      onRegisterError("SignUp fail, please try again" + err.toString());
     }).whenComplete(() {
       print("completed");
     });
   }
 
   ///
-
+  void _onLogninErr(String code, Function(String) onSignInError){
+    print(code);
+    switch(code){
+      case "invalid-email":
+        onSignInError("Invalid email");
+        break;
+      case "wrong-password":
+        onSignInError("Incorrect password");
+        break;
+      case "user-not-found":
+        onSignInError("Account does not exist or has been deleted");
+        break;
+    }
+  }
   void _onSignUpErr(String code, Function(String) onRegisterError) {
     print(code);
     switch (code) {
-      case "ERROR_INVALID_EMAIL":
-      case "ERROR_INVALID_CREDENTIAL":
+      case "invalid-email":
+      case "invalid-credential":
         onRegisterError("Invalid email");
         break;
-      case "ERROR_EMAIL_ALREADY_IN_USE":
+      case "email-already-in-use":
         onRegisterError("Email has existed");
         break;
-      case "ERROR_WEAK_PASSWORD":
+      case "weak-password":
         onRegisterError("The password is not strong enough");
         break;
       default:
