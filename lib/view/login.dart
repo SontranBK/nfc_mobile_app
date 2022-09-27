@@ -7,7 +7,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:splash_screen_view/SplashScreenView.dart';
 import 'package:app/view/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
+import 'load_msg_dilog.dart';
 import '../main.dart';
 
 void main() async {
@@ -215,7 +215,7 @@ class _SignPageState extends State<SignPage> {
           .push(MaterialPageRoute(builder: (context) => Home()));
     }, (msg) {
       // LoadingDialog.hideLoadingDialog(context);
-      // MsgDialog.showMsgDialog(context, "Sign-In", msg);
+      MsgDialog.showMsgDialog(context, "Sign-In", msg);
     });
     setState((){
       if(nameController.text.length < 6 || !nameController.text.contains('@')){
