@@ -34,7 +34,7 @@ class _GenerateQRPageState extends State<GenerateQRPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               QrImage(
-                data: phonecontroller.text + " | " + teamscontroller.text + " | " + fbcontroller.text + " | " + istacontroller.text,
+                data: "BKLAB | " + phonecontroller.text + " | " + teamscontroller.text + " | " + fbcontroller.text + " | " + istacontroller.text,
                 size: 300,
                 embeddedImage: AssetImage('images/logo.png'),
                 embeddedImageStyle: QrEmbeddedImageStyle(

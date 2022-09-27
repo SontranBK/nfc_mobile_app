@@ -8,6 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:app/widgets/custom_appbar.dart';
 import 'package:app/theme/colors.dart';
+import 'package:app/view/linkQr.dart';
 
 class ScanQRCode extends StatefulWidget {
   const ScanQRCode({Key? key}) : super(key: key);
@@ -18,7 +19,7 @@ class ScanQRCode extends StatefulWidget {
 
 class _ScanQRCodeState extends State<ScanQRCode> {
 
-  String qrResult = "Scanner Data will appear hear";
+  String qrResult = "";
   bool finished_scanning = false;
 
   void _show_Success_Noti() {
@@ -63,11 +64,13 @@ class _ScanQRCodeState extends State<ScanQRCode> {
       SingleChildScrollView(
         child: Column(
           children: [
-            Text('$qrResult', style: TextStyle(color: Colors.black),),
+            //Text('$qrResult', style: TextStyle(color: Colors.black),),
             SizedBox(height: 50,),
             getActions(),
             SizedBox(height: 50,),
             getActions2(),
+            SizedBox(height: 50,),
+            getActions3(),
 
           ],
         ),
@@ -171,6 +174,63 @@ class _ScanQRCodeState extends State<ScanQRCode> {
                         ),
                         SizedBox(height: 16),
                         Text("Update Your Status", style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.w600),)
+                      ],
+                    )
+                ),
+              )
+          ),
+          SizedBox(width: 30,),
+        ],
+      );
+  }
+
+  getActions3(){
+    return
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          SizedBox(width: 30,),
+          Expanded(
+              child: GestureDetector(
+                onTap: finished_scanning ? _show_Success_Noti : null,
+                child: Container(
+                  // width: double.infinity,
+                    height: 160,
+                    padding: EdgeInsets.only(top: 20, bottom: 14, left: 7, right: 7),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: light_pink,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.1),
+                          spreadRadius: 1,
+                          blurRadius: 1,
+                          offset: Offset(1, 1), // changes position of shadow
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      children: [
+                        Container(
+                          alignment: Alignment.center,
+                          padding: EdgeInsets.all(12),
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: secondary
+                          ),
+                          child: IconButton(
+                            icon: Icon(Icons.open_in_new),
+                            iconSize: 38,
+                            color: Colors.black,
+                            onPressed: () {
+                              Navigator.push(context, MaterialPageRoute(
+                                builder: (context) => LinkPage(qrResult: qrResult),
+                              ));
+                            },
+                          ),
+                        ),
+                        SizedBox(height: 16),
+                        Text("QR Content", style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.w600),)
                       ],
                     )
                 ),
