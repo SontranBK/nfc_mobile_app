@@ -20,26 +20,48 @@ class ScanQRCode extends StatefulWidget {
 class _ScanQRCodeState extends State<ScanQRCode> {
 
   String qrResult = "";
-  bool finished_scanning = false;
+  String showResult = "Please perform QR code scanning!";
+  bool finished_checkin = false;
+  bool finished_scanInfo = false;
 
   void _show_Success_Noti() {
+    String success_noti_message = "";
+    String success_noti_title = "";
+    bool valid_checkin = true;
+
     DateTime now = DateTime.now();
+    //var hour = now.hour;
     String formattedDate = DateFormat('hh:mm:ss, dd MMM yyyy').format(now);
-    // Do something
-    //Navigator.push(context, MaterialPageRoute(builder: (context) => MainScreen(),);)
+
+    if (8 < now.hour && now.hour < 18) {
+      success_noti_message = 'You successfully checked in at '+formattedDate+'.\nNow other LAB members will see your status as ONLINE until 18 p.m today !!!';
+      success_noti_title = 'Congrats and Welcome!';
+      valid_checkin = true;
+    }
+    else {
+      success_noti_message = 'You checked in at '+formattedDate+'.\nYou did not check in between 8 a.m and 6 p.m, therefore your status remains OFFLINE !!!';
+      success_noti_title = 'Your check-in is invalid!';
+      valid_checkin = false;
+    }
     AwesomeDialog(
       context: context,
       animType: AnimType.leftSlide,
       headerAnimationLoop: false,
-      dialogType: DialogType.success,
+      dialogType: valid_checkin ? DialogType.success : DialogType.error,
       showCloseIcon: true,
-      title: 'Congrats and Welcome!',
-      desc:
-      'You successfully checked in at '+formattedDate+'.\nNow other LAB members will see your status as ONLINE until 18 p.m today !!!',
+      title:success_noti_title,
+      desc:success_noti_message,
       btnOkOnPress: () {},
-      btnOkIcon: Icons.check_circle,
+      btnOkIcon: valid_checkin ? Icons.check_circle : Icons.cancel,
+      btnOkColor: valid_checkin ? Colors.green : Colors.red,
       onDismissCallback: (type) {},
     ).show();
+  }
+
+  void _direct_QR_content(qrResult){
+    Navigator.push(context, MaterialPageRoute(
+      builder: (context) => LinkPage(qrResult: qrResult),
+    ));
   }
 
   Future<void> scanQR() async {
@@ -51,11 +73,23 @@ class _ScanQRCodeState extends State<ScanQRCode> {
         this.qrResult = qrCode.toString();
       });
       if(qrResult == 'LAB_CTARG_618_TaQuangBuuLibrary_HUST'){
-        qrResult = 'Welcome to CTARG, at 618 Ta Quang Buu Library';
-        finished_scanning = true;
+        showResult = 'Welcome to CTARG, at 618 Ta Quang Buu Library';
+        finished_checkin = true;
+      }
+      else if(qrResult == 'MAP_410_C9Building_HUST'){
+        showResult = 'Welcome to MAP, at 410 C9 Building';
+        finished_checkin = true;
+      }
+      else if(qrResult.substring(0, 8) == "BKLAB | "){
+        showResult = 'Successfully scan QR contact\nClick "Open contact" for more info';
+        finished_scanInfo = true;
+      }
+      else{
+        showResult = 'Invalid QR code for BK Lab Manager\nPlease try another QR code';
       }
     } on PlatformException {
       qrResult = 'Fail to read QR Code';
+      showResult = 'Fail to read QR Code';
     }
   }
 
@@ -64,13 +98,15 @@ class _ScanQRCodeState extends State<ScanQRCode> {
       SingleChildScrollView(
         child: Column(
           children: [
-            //Text('$qrResult', style: TextStyle(color: Colors.black),),
-            SizedBox(height: 50,),
+            SizedBox(height: 30,),
+            Text('$showResult', style: TextStyle(color: Colors.black),),
+            SizedBox(height: 30,),
             getActions(),
-            SizedBox(height: 50,),
+            SizedBox(height: 30,),
             getActions2(),
-            SizedBox(height: 50,),
+            SizedBox(height: 30,),
             getActions3(),
+            SizedBox(height: 30,),
 
           ],
         ),
@@ -139,7 +175,7 @@ class _ScanQRCodeState extends State<ScanQRCode> {
           SizedBox(width: 30,),
           Expanded(
               child: GestureDetector(
-                onTap: finished_scanning ? _show_Success_Noti : null,
+                onTap: finished_checkin ? _show_Success_Noti : null,
                 child: Container(
                   // width: double.infinity,
                     height: 160,
@@ -169,7 +205,7 @@ class _ScanQRCodeState extends State<ScanQRCode> {
                             icon: Icon(Icons.badge),
                             iconSize: 38,
                             color: Colors.black,
-                            onPressed: finished_scanning ? _show_Success_Noti : null,
+                            onPressed: finished_checkin ? _show_Success_Noti : null,
                           ),
                         ),
                         SizedBox(height: 16),
@@ -192,7 +228,8 @@ class _ScanQRCodeState extends State<ScanQRCode> {
           SizedBox(width: 30,),
           Expanded(
               child: GestureDetector(
-                onTap: finished_scanning ? _show_Success_Noti : null,
+                onTap: () {finished_scanInfo ? _direct_QR_content(qrResult) : null;
+                  },
                 child: Container(
                   // width: double.infinity,
                     height: 160,
@@ -219,18 +256,16 @@ class _ScanQRCodeState extends State<ScanQRCode> {
                               color: secondary
                           ),
                           child: IconButton(
-                            icon: Icon(Icons.open_in_new),
+                            icon: Icon(Icons.contact_mail),
                             iconSize: 38,
-                            color: Colors.black,
+                            color: finished_scanInfo? Colors.black : Colors.grey,
                             onPressed: () {
-                              Navigator.push(context, MaterialPageRoute(
-                                builder: (context) => LinkPage(qrResult: qrResult),
-                              ));
+                              finished_scanInfo ? _direct_QR_content(qrResult) : null;
                             },
                           ),
                         ),
                         SizedBox(height: 16),
-                        Text("QR Content", style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.w600),)
+                        Text("Open Contact From QR", style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.w600),)
                       ],
                     )
                 ),

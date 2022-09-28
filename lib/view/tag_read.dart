@@ -53,7 +53,7 @@ class TagReadPage extends StatelessWidget {
         actions: <Widget>[
           IconButton(
             icon: Icon(
-              Icons.style,
+              Icons.contactless,
               color: Colors.white,
             ),
             onPressed: () {

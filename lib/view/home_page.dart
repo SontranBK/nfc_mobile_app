@@ -18,28 +18,28 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-     return 
+    return
       Scaffold(
         backgroundColor: secondary,
         appBar: CustomAppbar(title: "Welcome to BK Lab!"),
         body: getBody(),
       );
   }
-  
+
 
   getBody(){
     return
-    SingleChildScrollView(
-      child: Column(
-        children: [
-          SizedBox(height: 50,),
-          getActions(),
-          SizedBox(height: 50,),
-          getActions2(),
+      SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(height: 50,),
+            getActions(),
+            SizedBox(height: 50,),
+            getActions2(),
 
-        ],
-      ),
-    );
+          ],
+        ),
+      );
   }
 
   getActions(){
@@ -49,11 +49,11 @@ class _HomePageState extends State<HomePage> {
         children: [
           SizedBox(width: 25,),
           Expanded(
-            child: ActionBox(title: "Read NFC", icon: Icons.nfc, bgColor: green, linkscreen: TagReadPage.withDependency())
+              child: ActionBox(title: "Read NFC", icon: Icons.nfc, bgColor: green, linkscreen: TagReadPage.withDependency())
           ),
           SizedBox(width: 35,),
           Expanded(
-            child: ActionBox(title: "Gen QR", icon: Icons.qr_code_2, bgColor: purple, linkscreen: GenerateQRPage())
+              child: ActionBox(title: "Gen QR", icon: Icons.qr_code_2, bgColor: purple, linkscreen: GenerateQRPage())
           ),
           SizedBox(width: 25,),
         ],

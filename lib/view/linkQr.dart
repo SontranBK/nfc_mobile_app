@@ -41,23 +41,23 @@ class LinkPage extends StatelessWidget {
           FormSection(children: [
             FormRow(
                 title: Text('Phone Number'),
-                trailing: Icon(Icons.open_in_new),
-                onTap: () => launch(content[1]) //('https://nfcmanager.naokiokada.com/privacy-policy/'),
+                trailing: Icon(Icons.content_copy),
+                onTap: () => launch(content[1])
             ),
             FormRow(
                 title: Text('Ms Teams'),
-                trailing: Icon(Icons.open_in_new),
-                onTap: () => launch(content[1]) //('https://nfcmanager.naokiokada.com/privacy-policy/'),
+                trailing: Icon(Icons.content_copy),
+                onTap: () => launch(content[2])
             ),
             FormRow(
                 title: Text('Facebook'),
                 trailing: Icon(Icons.open_in_new),
-                onTap: () => launch(content[2]) //('https://nfcmanager.naokiokada.com/privacy-policy/'),
+                onTap: () => launch(content[3])
             ),
             FormRow(
                 title: Text('Instagram'),
                 trailing: Icon(Icons.open_in_new),
-                onTap: () => launch(content[3]) //('https://nfcmanager.naokiokada.com/privacy-policy/'),
+                onTap: () => launch(content[4])
             ),
           ]),
         ],
