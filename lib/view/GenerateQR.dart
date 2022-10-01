@@ -10,6 +10,65 @@ class _GenerateQRPageState extends State<GenerateQRPage> {
   TextEditingController teamscontroller = TextEditingController();
   TextEditingController fbcontroller = TextEditingController();
   TextEditingController istacontroller = TextEditingController();
+  var _phoneInvalid = false;
+  var _teamsInvalid = false;
+  var _fbInvalid = false;
+  var _instaInvalid = false;
+  var _phoneError = "SDT không hợp lệ";
+  var _teamsError = "Tài khoản Teams không hợp lệ";
+  var _fbError = "Tài khoản Fb không hợp lệ";
+  var _instaError = "Tài khoản Insta không hợp lệ";
+
+
+  void content(){
+    setState((){
+      if(phonecontroller.text.length < 9 || !phonecontroller.text.contains("0")){
+        _phoneInvalid = true;
+      }else{
+        _phoneInvalid = false;
+      }
+      if(teamscontroller.text.length < 5 || !teamscontroller.text.contains('@') ){
+        _teamsInvalid = true;
+      }else{
+        _teamsInvalid = false;
+      }
+      if(fbcontroller.text.length < 5 || !fbcontroller.text.contains('facebook.com') ){
+        _fbInvalid = true;
+      }else {
+        _fbInvalid = false;
+      }
+      if(istacontroller.text.length < 5 || !istacontroller.text.contains('instagram.com') ){
+        _instaInvalid = true;
+      }else {
+        _instaInvalid = false;
+      }
+    });
+  }
+
+  Widget _entryField(
+      bool obscure,
+      String title,
+      TextEditingController controller,
+      var users,
+      var error,
+      ) {
+    return TextField(
+      obscureText: obscure,
+      controller: controller,
+      decoration: InputDecoration(
+        errorText: users ? error : null,
+        enabledBorder: OutlineInputBorder(
+          // borderSide:
+          // BorderSide(width: 3, color: Colors.greenAccent), //<-- SEE HERE
+          borderRadius: BorderRadius.circular(20.0),
+        ),
+        labelText: title,
+      ),
+    );
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,16 +101,23 @@ class _GenerateQRPageState extends State<GenerateQRPage> {
                 ),
               ),
               Container(
-                margin: EdgeInsets.all(20),
-                child: TextField(
-                  controller: phonecontroller,
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(borderSide: const BorderSide(color: Colors.grey, width: 0.0),),
-                      labelText: 'Phone Number '
-                  ),
-                ),
+                  margin: EdgeInsets.all(20),
+                  child: _entryField(false,'Phone Number', phonecontroller,_phoneInvalid,_phoneError)
               ),
               Container(
+                  margin: EdgeInsets.all(20),
+                  child: _entryField(false,'MS Teams', teamscontroller,_teamsInvalid,_teamsError)
+              ),
+              Container(
+                  margin: EdgeInsets.all(20),
+                  child: _entryField(false,'Facebook URL', fbcontroller,_fbInvalid,_fbError)
+              ),
+              Container(
+                  margin: EdgeInsets.all(20),
+                  child: _entryField(false,'Instagram URL', istacontroller,_instaInvalid,_instaError)
+              ),
+
+              /*Container(
                 margin: EdgeInsets.all(20),
                 child: TextField(
                   controller: teamscontroller,
@@ -80,13 +146,15 @@ class _GenerateQRPageState extends State<GenerateQRPage> {
                       labelText: 'Instagram URL'
                   ),
                 ),
-              ),
+              ),*/
               ElevatedButton(
                   onPressed: () {
-                    setState(() {
-                    });
+                    content();
                   },
-                  child: Text('GENERATE QR')),
+                  child: Text('GENERATE QR')
+
+              ),
+
 
             ],
           ),
