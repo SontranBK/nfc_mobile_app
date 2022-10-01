@@ -14,10 +14,10 @@ class _GenerateQRPageState extends State<GenerateQRPage> {
   var _teamsInvalid = false;
   var _fbInvalid = false;
   var _instaInvalid = false;
-  var _phoneError = "SDT không hợp lệ";
-  var _teamsError = "Tài khoản Teams không hợp lệ";
-  var _fbError = "Tài khoản Fb không hợp lệ";
-  var _instaError = "Tài khoản Insta không hợp lệ";
+  var _phoneError = "Inserted phone number is not valid";
+  var _teamsError = "Inserted MS Teams account is not valid";
+  var _fbError = "Inserted Facebook URL is not valid";
+  var _instaError = "Inserted Instagram URL is not valid";
 
 
   void content(){
@@ -102,51 +102,20 @@ class _GenerateQRPageState extends State<GenerateQRPage> {
               ),
               Container(
                   margin: EdgeInsets.all(20),
-                  child: _entryField(false,'Phone Number', phonecontroller,_phoneInvalid,_phoneError)
+                  child: _entryField(false,'Insert your phone number', phonecontroller,_phoneInvalid,_phoneError)
               ),
               Container(
                   margin: EdgeInsets.all(20),
-                  child: _entryField(false,'MS Teams', teamscontroller,_teamsInvalid,_teamsError)
+                  child: _entryField(false,'Insert your MS Teams account', teamscontroller,_teamsInvalid,_teamsError)
               ),
               Container(
                   margin: EdgeInsets.all(20),
-                  child: _entryField(false,'Facebook URL', fbcontroller,_fbInvalid,_fbError)
+                  child: _entryField(false,'Insert your Facebook URL', fbcontroller,_fbInvalid,_fbError)
               ),
               Container(
                   margin: EdgeInsets.all(20),
-                  child: _entryField(false,'Instagram URL', istacontroller,_instaInvalid,_instaError)
+                  child: _entryField(false,'Insert your Instagram URL', istacontroller,_instaInvalid,_instaError)
               ),
-
-              /*Container(
-                margin: EdgeInsets.all(20),
-                child: TextField(
-                  controller: teamscontroller,
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(borderSide: const BorderSide(color: Colors.grey, width: 0.0),),
-                      labelText: 'Ms Teams'
-                  ),
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.all(20),
-                child: TextField(
-                  controller: fbcontroller,
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(borderSide: const BorderSide(color: Colors.grey, width: 0.0),),
-                      labelText: 'Facebook URL'
-                  ),
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.all(20),
-                child: TextField(
-                  controller: istacontroller,
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(borderSide: const BorderSide(color: Colors.grey, width: 0.0),),
-                      labelText: 'Instagram URL'
-                  ),
-                ),
-              ),*/
               ElevatedButton(
                   onPressed: () {
                     content();

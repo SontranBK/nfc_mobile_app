@@ -22,19 +22,39 @@ class ScanQRCode extends StatefulWidget {
 class _ScanQRCodeState extends State<ScanQRCode> {
 
   final FirebaseAuth auth = FirebaseAuth.instance;
-  String qrResult = "";
-  bool finished_scanning = false;
+  String qrResult = ""; // store QR scanned result
+  String showResult = "Please perform QR code scanning!"; // store message showing in top
+  bool finished_scanCheckin = false; // if user finish scan QR for checking in
+  bool finished_scanInfo = false; // if user finish scan QR for info
+  bool already_updateStatus = false; // if user already update their status
 
   void _show_Success_Noti() {
-    String success_noti_message = "";
-    String success_noti_title = "";
+    final User? user = auth.currentUser; // push user info to firebase when they update status
+    final uid = user?.uid; // push user info to firebase when they update status
+
+    String success_noti_message = ""; // use in success dialog
+    String success_noti_title = ""; // use in success dialog
     DateTime now = DateTime.now();
-    bool valid_checkin = true;
+    bool valid_checkin = true; // if user check in between 6am and 8pm
+
     String formattedDate = DateFormat('hh:mm:ss, dd MMM yyyy').format(now);
     if (8 < now.hour && now.hour < 18) {
-      success_noti_message = 'You successfully checked in at '+formattedDate+'.\nNow other LAB members will see your status as ONLINE until 18 p.m today !!!';
-      success_noti_title = 'Congrats and Welcome!';
-      valid_checkin = true;
+      if (!already_updateStatus) {
+        success_noti_message = 'You successfully checked in at ' + formattedDate +
+                '.\nNow other LAB members will see your status as ONLINE until 18 p.m today !!!';
+        success_noti_title = 'Congrats and welcome!';
+        valid_checkin = true;
+        already_updateStatus = true;
+        users.add({'ID người dùng': uid,'Email':user?.email,'Time': formattedDate})
+            //.then((value) => print('ID add: ${uid}' + 'Email add: ${user?.email}' + 'Time: $formattedDate'))
+            .catchError(
+                (error) => print('Faild to add user: $error'));
+      }
+      else{
+        success_noti_message = 'You already checked in and updated your status as ONLINE.\nPlease do not update your status again!';
+        success_noti_title = 'Status updated already!';
+        valid_checkin = true;
+      }
     }
     else {
       success_noti_message = 'You checked in at '+formattedDate+'.\nYou did not check in between 8 a.m and 6 p.m, therefore your status remains OFFLINE !!!';
@@ -47,21 +67,25 @@ class _ScanQRCodeState extends State<ScanQRCode> {
       context: context,
       animType: AnimType.leftSlide,
       headerAnimationLoop: false,
-      dialogType: DialogType.success,
+      dialogType: valid_checkin ? DialogType.success : DialogType.error,
       showCloseIcon: true,
-      title: 'Congrats and Welcome!',
-      desc:
-      'You successfully checked in at '+formattedDate+'.\nNow other LAB members will see your status as ONLINE until 18 p.m today !!!',
+      title:success_noti_title,
+      desc:success_noti_message,
       btnOkOnPress: () {},
-      btnOkIcon: Icons.check_circle,
+      btnOkIcon: valid_checkin ? Icons.check_circle : Icons.cancel,
+      btnOkColor: valid_checkin ? Colors.green : Colors.red,
       onDismissCallback: (type) {},
     ).show();
   }
   CollectionReference users = FirebaseFirestore.instance.collection("users");
 
+  void _direct_QR_content(qrResult){
+    Navigator.push(context, MaterialPageRoute(
+      builder: (context) => LinkPage(qrResult: qrResult),
+    ));
+  }
+
   Future<void> scanQR() async {
-    final User? user = auth.currentUser;
-    final uid = user?.uid;
     DateTime now = DateTime.now();
     try {
       final qrCode = await FlutterBarcodeScanner.scanBarcode(
@@ -71,15 +95,23 @@ class _ScanQRCodeState extends State<ScanQRCode> {
         this.qrResult = qrCode.toString();
       });
       if(qrResult == 'LAB_CTARG_618_TaQuangBuuLibrary_HUST'){
-        qrResult = 'Welcome to CTARG, at 618 Ta Quang Buu Library';
-        finished_scanning = true;
-        users.add({'ID người dùng': uid,'Email':user?.email,'Time': now})
-            .then((value) => print('ID add: ${uid}' + 'Email add: ${user?.email}' + 'Time: $now'))
-            .catchError(
-                (error) => print('Faild to add user: $error'));
+        showResult = 'Welcome to CTARG, at 618 Ta Quang Buu Library.\nPlease update status to ONLINE if you haven\'t';
+        finished_scanCheckin = true;
+      }
+      else if(qrResult == 'MAP_410_C9Building_HUST'){
+        showResult = 'Welcome to MAP, at 410 C9 Building.\nPlease update status to ONLINE if you haven\'t';
+        finished_scanCheckin = true;
+      }
+      else if(qrResult.substring(0, 8) == "BKLAB | "){
+        showResult = 'Successfully scan QR contact\nClick "Open contact" for more info';
+        finished_scanInfo = true;
+      }
+      else{
+        showResult = 'Invalid QR code for BK Lab Manager\nPlease try another QR code';
       }
     } on PlatformException {
       qrResult = 'Fail to read QR Code';
+      showResult = 'Fail to read QR Code';
     }
   }
 
@@ -88,13 +120,15 @@ class _ScanQRCodeState extends State<ScanQRCode> {
       SingleChildScrollView(
         child: Column(
           children: [
-            //Text('$qrResult', style: TextStyle(color: Colors.black),),
-            SizedBox(height: 50,),
+            SizedBox(height: 30,),
+            Text('$showResult', style: TextStyle(color: Colors.black),),
+            SizedBox(height: 30,),
             getActions(),
-            SizedBox(height: 50,),
+            SizedBox(height: 30,),
             getActions2(),
-            SizedBox(height: 50,),
+            SizedBox(height: 30,),
             getActions3(),
+            SizedBox(height: 30,),
 
           ],
         ),
@@ -163,7 +197,7 @@ class _ScanQRCodeState extends State<ScanQRCode> {
           SizedBox(width: 30,),
           Expanded(
               child: GestureDetector(
-                onTap: finished_scanning ? _show_Success_Noti : null,
+                onTap: finished_scanCheckin ? _show_Success_Noti : null,
                 child: Container(
                   // width: double.infinity,
                     height: 160,
@@ -193,7 +227,7 @@ class _ScanQRCodeState extends State<ScanQRCode> {
                             icon: Icon(Icons.badge),
                             iconSize: 38,
                             color: Colors.black,
-                            onPressed: finished_scanning ? _show_Success_Noti : null,
+                            onPressed: finished_scanCheckin ? _show_Success_Noti : null,
                           ),
                         ),
                         SizedBox(height: 16),
@@ -216,7 +250,8 @@ class _ScanQRCodeState extends State<ScanQRCode> {
           SizedBox(width: 30,),
           Expanded(
               child: GestureDetector(
-                onTap: finished_scanning ? _show_Success_Noti : null,
+                onTap: () {finished_scanInfo ? _direct_QR_content(qrResult) : null;
+                },
                 child: Container(
                   // width: double.infinity,
                     height: 160,
@@ -243,18 +278,15 @@ class _ScanQRCodeState extends State<ScanQRCode> {
                               color: secondary
                           ),
                           child: IconButton(
-                            icon: Icon(Icons.open_in_new),
+                            icon: Icon(Icons.contact_mail),
                             iconSize: 38,
-                            color: Colors.black,
-                            onPressed: () {
-                              Navigator.push(context, MaterialPageRoute(
-                                builder: (context) => LinkPage(qrResult: qrResult),
-                              ));
+                            color: finished_scanInfo? Colors.black : Colors.grey,
+                            onPressed: () {finished_scanInfo ? _direct_QR_content(qrResult) : null;
                             },
                           ),
                         ),
                         SizedBox(height: 16),
-                        Text("QR Content", style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.w600),)
+                        Text("Open Contact From QR", style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.w600),)
                       ],
                     )
                 ),

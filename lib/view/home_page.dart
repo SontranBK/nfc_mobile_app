@@ -7,6 +7,7 @@ import 'package:app/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:app/view/tag_read.dart';
 import 'package:app/view/empty_page.dart';
+import 'package:app/view/User_Status.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({ Key? key }) : super(key: key);
@@ -71,7 +72,7 @@ class _HomePageState extends State<HomePage> {
           ),
           SizedBox(width: 25,),
           Expanded(
-              child: ActionBox(title: "Users Status", icon: Icons.manage_accounts, bgColor: blue, linkscreen: EmptyPage())
+              child: ActionBox(title: "Users Status", icon: Icons.manage_accounts, bgColor: blue, linkscreen: UserStatusPage())
           ),
           SizedBox(width: 25,),
         ],

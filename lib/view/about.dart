@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:package_info_plus/package_info_plus.dart';
 import 'package:app/widgets/custom_appbar.dart';
 
 
@@ -14,27 +13,6 @@ class AboutPage extends StatefulWidget {
 }
 
 class _AboutPageState extends State<AboutPage> {
-  PackageInfo _packageInfo = PackageInfo(
-    appName: 'Unknown',
-    packageName: 'Unknown',
-    version: 'Unknown',
-    buildNumber: 'Unknown',
-    buildSignature: 'Unknown',
-  );
-
-  @override
-  void initState() {
-    super.initState();
-    _initPackageInfo();
-  }
-
-  Future<void> _initPackageInfo() async {
-    final info = await PackageInfo.fromPlatform();
-    setState(() {
-      _packageInfo = info;
-    });
-  }
-
 
   @override
   Widget build(BuildContext context) {
@@ -47,10 +25,10 @@ class _AboutPageState extends State<AboutPage> {
       "Developing Teams",
     ];
     final List<String>content_name  = [
-      _packageInfo.appName.isEmpty ? 'Not set' : _packageInfo.appName,
+      "BK Lab Manager",
       "bklab-mana",
-      "1.0.0",
-      _packageInfo.buildNumber.isEmpty ? 'Not set' : _packageInfo.buildNumber,
+      "1.1.0",
+      "2",
       'Not set',
       "  Son Tran BK \n  and CTARG",
     ];

@@ -12,7 +12,6 @@ dependencies:
   flutter_web_plugins:
     sdk: flutter
   nfc_manager:
-  package_info_plus:
   provider:
   sqflite:
   url_launcher:
@@ -27,8 +26,6 @@ dependencies:
   badges: ^2.0.2
   awesome_dialog: ^3.0.1
   intl: ^0.17.0
-  hive: ^2.2.3
-  hive_flutter: ^1.1.0
   path_provider: ^2.0.11
   firebase_auth: ^3.8.0
   firebase_core: ^1.22.0
@@ -38,7 +35,6 @@ dependencies:
 
 
 dev_dependencies:
-  hive_generator: ^1.1.3
   build_runner: ^2.1.0
   flutter_test:
     sdk: flutter

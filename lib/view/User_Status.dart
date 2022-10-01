@@ -5,56 +5,25 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-class EmptyPage extends StatefulWidget {
+
+class UserStatusPage extends StatefulWidget {
   @override
-  _EmptyPageState createState() => _EmptyPageState();
+  _UserStatusPageState createState() => _UserStatusPageState();
 }
-class _EmptyPageState extends State<EmptyPage> {
+class _UserStatusPageState extends State<UserStatusPage> {
 
   final Stream<QuerySnapshot> user = FirebaseFirestore.instance.collection(
       'users').snapshots();
 
-  // final FirebaseAuth auth = FirebaseAuth.instance;
-  // final ref = FirebaseDatabase.instance.ref();
-  // String users="";
-  // String id = "";
-
-  // Future<void> readJson() async {
-  //   final snapshot = await ref.child('users/$users.users.uid/name').get();
-  //   if (snapshot.exists) {
-  //     print('Value :${snapshot.value}');
-  //   } else {
-  //     print('No data available.');
-  //   }
-  //   final User? user = auth.currentUser;
-  //   final uid = user?.uid;
-  //   final String response = await rootBundle.loadString('nfcmobileapp-main-default-rtdb-export.json');
-  //   final data = await json.decode(response);
-  //   // print('data: ${data}');
-  //   print('UID: ${uid}');
-  //   setState(() {
-  //     users = data["users"][uid]["name"];
-  //   });
-  // }
-
-  // void inputData() {
-  //   final User? user = auth.currentUser;
-  //   final uid = user?.uid;
-  //   // here you write the codes to input the data into firestore
-  // }
   @override
   Widget build(BuildContext context) {
-    // final User? user = auth.currentUser;
-    // final uid = user?.uid;
-    // readJson();
-    // print('Họ tên: ${users}');
     return Scaffold(
       appBar: AppBar(
-        title: Text('Features Coming Soon!'),
+        title: Text('List Of Online Users'),
         actions: <Widget>[
           IconButton(
             icon: Icon(
-              Icons.install_mobile,
+              Icons.recent_actors,
               color: Colors.white,
             ),
             onPressed: () {
@@ -67,10 +36,6 @@ class _EmptyPageState extends State<EmptyPage> {
       body: Center(
         child: Column(
           children: <Widget>[
-            Icon(
-              Icons.developer_mode,
-              size: 200,
-            ),
             SizedBox(
               height: 500,
 
@@ -101,10 +66,11 @@ class _EmptyPageState extends State<EmptyPage> {
           shrinkWrap: true,
           itemCount: data.size,
           itemBuilder: (context, index) {
+
             return Container(
               alignment: Alignment.center,
               child: Text(
-                  'Email: ${data.docs[index]['Email']}',
+                  '\n$index: ${data.docs[index]['Email']} CHECKED IN AT ${data.docs[index]['Time']}',
                   style: TextStyle(
                     fontSize: 15,
                     color: Colors.black,

@@ -39,11 +39,28 @@ class LinkPage extends StatelessWidget {
     //print(content[0]);
       return Scaffold(
         appBar: AppBar(
-          title: Text('BK LAB manager information'),
+          title: Text('QR Code Info'),
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(
+                Icons.perm_device_information,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                // do something
+              },
+            )
+          ],
         ),
+        backgroundColor: Colors.white,
         body: ListView(
           padding: EdgeInsets.all(2),
           children: [
+            SizedBox(height: 50,),
+            Center(
+              child: Text('  Please copy phone number, MS Teams account\n  Or direct to Facebook, Instagram', style: TextStyle(fontSize: 20,color: Colors.black),),
+            ),
+            SizedBox(height: 30,),
             FormSection(children: [
               Container(),
               FormRow(
@@ -73,12 +90,12 @@ class LinkPage extends StatelessWidget {
               FormRow(
                   title: Text('Facebook'),
                   trailing: Icon(Icons.open_in_new),
-                  onTap: () => launch("https://"+ content3)
+                  onTap: () => launch(content3)
               ),
               FormRow(
                   title: Text('Instagram'),
                   trailing: Icon(Icons.open_in_new),
-                  onTap: () => launch("https://"+ content4)
+                  onTap: () => launch(content4)
               ),
             ]),
           ],
