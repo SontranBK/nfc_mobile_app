@@ -84,6 +84,22 @@ samples, guidance on mobile development, and a full API reference.
 - Check out deps used in [pubspec file](pubspec.yaml)
 </details>
 
+<details>
+<summary> 4.3. Implementation process:</summary>
+
+- Step 1: Installation and configuration environment:
+    - Install Android studio: https://developer.android.com/studio 
+    - Setup emulator: https://developer.android.com/studio/run/managing-avd
+    - Install Flutter framework and Dart language: https://docs.flutter.dev/development/tools/android-studio.
+    
+    After finishing above step you will have the below screen.
+    <p align="center">
+    <img src="https://user-images.githubusercontent.com/97107855/193439217-1e0781cb-028f-417f-ae9e-da4c8a86f95a.png" width="250">
+- Step 2: Open and run project:
+    - Clone source code via git: git clone git@github.com:SontranBK/nfc_mobile_app.git
+    - Open source code via Android Studio then setup framework
+</details>
+
 ## 5. Testing methods and materials:
 
 <details>
