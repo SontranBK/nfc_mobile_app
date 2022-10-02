@@ -84,13 +84,67 @@ samples, guidance on mobile development, and a full API reference.
 - Check out deps used in [pubspec file](pubspec.yaml)
 </details>
 
-## 5. Testing methods and assets:
+## 5. Testing methods and materials:
+
+<details>
+<summary> 5.1. Scanning QR for checking-in test:</summary>
+
+- Please perform QR scanning QR codes below for checking in CTARG 618 Ta Quang Buu Library, then click Update Status:
+<p align="center">
+<img src="https://user-images.githubusercontent.com/97107855/193439066-653f6725-927d-4dc3-9c98-5974405f0fea.png" width="200">
+<img src="https://user-images.githubusercontent.com/97107855/193439071-547fce75-5d06-4426-b988-8da2ead99a5d.png" width="200">
+<img src="https://user-images.githubusercontent.com/97107855/193439080-1fc1572d-dccd-4b7d-b0cd-a31abf350047.png" width="200">
+</p>
+
+- Also, QR scanning codes below for checking in 410 C9 Building, then click Update Status:
 
 <p align="center">
-<img src="https://user-images.githubusercontent.com/97107855/191565403-4cc0b55d-c2ce-4220-a5c7-13206b34bc36.PNG" width="200">
-<img src="https://user-images.githubusercontent.com/97107855/191565758-23a5c692-7abd-4750-8ff1-7b0bf0e13dfd.PNG" width="200">
-<img src="https://user-images.githubusercontent.com/97107855/191565774-ed7e9e85-811d-4c94-9bab-39d1c2e15f34.PNG" width="200">
+<img src="https://user-images.githubusercontent.com/97107855/193439217-1e0781cb-028f-417f-ae9e-da4c8a86f95a.png" width="250">
+
+<img src="https://user-images.githubusercontent.com/97107855/193439239-b89867c9-bc59-4674-8bae-42fabb986d30.png" width="250">
 </p>
+
+- ***NOTE:*** user can only check in and update status as ONLINE between 8 a.m and 6 p.m everyday, including Saturday and Sunday. Outside these time range, "Update Status" button will return error dialog and user's status remains OFFLINE
+
+</details>
+
+<details>
+<summary> 5.2. Scanning QR for info exchange:</summary>
+
+- Please perform QR scanning QR codes below for info exchange, then click Open Contact From QR:
+
+<p align="center">
+<img src="https://user-images.githubusercontent.com/97107855/193439663-61dd0ac3-4367-4853-bc0d-1c134adb6a47.png" width="200">
+<img src="https://user-images.githubusercontent.com/97107855/193439665-8d353306-2d6b-4d66-95bb-37d77e0f7d3b.png" width="200">
+<img src="https://user-images.githubusercontent.com/97107855/193439667-d64fdb47-aae8-4552-96c3-c2ef22c30ac1.png" width="200">
+</p>
+
+- ***NOTE:*** These QR Codes above contain facebook and instagram link of Marc Zuckerberg (CEO of Meta), CR7 (a famous footballer) and Chelsea Football Club. The phone number and MS Teams account is random.
+
+</details>
+
+
+<details>
+<summary> 5.2. Test case when scanning random QR code:</summary>
+
+- Check out below random QR Codes, scan them with our app:
+
+<p align="center">
+<img src="https://user-images.githubusercontent.com/97107855/193439821-6d8c5e9c-2371-4b0c-b15e-6acc6c92e5ba.png" width="250">
+
+<img src="https://user-images.githubusercontent.com/97107855/193439818-4d4df195-70ff-4651-be34-2e3b3d761745.png" width="250">
+</p>
+
+
+</details>
+
+<details>
+<summary> 5.3. Accounts used for testing, logging-in (starting from version 1.1.0):</summary>
+
+- Please contact authors if you need accounts for testing, logging-in via email: son.tt2460M@sis.hust.edu.vn
+- Members of CTARG and MAP will be provided with an account
+
+</details>
 
 
 ## 6. Authors and credits:
