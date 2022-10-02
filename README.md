@@ -84,6 +84,15 @@ samples, guidance on mobile development, and a full API reference.
 - Check out deps used in [pubspec file](pubspec.yaml)
 </details>
 
-## 5. Authors and credits:
+## 5. Testing methods and assets:
+
+<p align="center">
+<img src="https://user-images.githubusercontent.com/97107855/191565403-4cc0b55d-c2ce-4220-a5c7-13206b34bc36.PNG" width="200">
+<img src="https://user-images.githubusercontent.com/97107855/191565758-23a5c692-7abd-4750-8ff1-7b0bf0e13dfd.PNG" width="200">
+<img src="https://user-images.githubusercontent.com/97107855/191565774-ed7e9e85-811d-4c94-9bab-39d1c2e15f34.PNG" width="200">
+</p>
+
+
+## 6. Authors and credits:
 In research and development process, all credits go to ***Son Tran BK (1st author), Duc Anh BK (2nd author) and CTARG LAB members***, in EEE, HUST (Hanoi University of Science and Technology), Ha Noi, Viet Nam
 
