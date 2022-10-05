@@ -36,17 +36,26 @@ class _ScanQRCodeState extends State<ScanQRCode> {
     String success_noti_title = ""; // use in success dialog
     DateTime now = DateTime.now();
     bool valid_checkin = true; // if user check in between 6am and 8pm
+    String formattedDate = ""; // for
 
-    String formattedDate = DateFormat('hh:mm:ss, dd MMM yyyy').format(now);
+    if (8 < now.hour && now.hour < 13)
+      {
+        formattedDate = DateFormat('hh:mm:ss').format(now)+" a.m, "+DateFormat('dd MMM yyyy').format(now);
+      }
+    else {
+      formattedDate = DateFormat('hh:mm:ss').format(now)+" p.m, "+DateFormat('dd MMM yyyy').format(now);
+    }
+
+    String today = DateFormat('dd MMM yyyy').format(now);
     if (8 < now.hour && now.hour < 18) {
       if (!already_updateStatus) {
         success_noti_message = 'You successfully checked in at ' + formattedDate +
-                '.\nNow other LAB members will see your status as ONLINE until 18 p.m today !!!';
+            '.\nNow other LAB members will see your status as ONLINE until 18 p.m today !!!';
         success_noti_title = 'Congrats and welcome!';
         valid_checkin = true;
         already_updateStatus = true;
-        users.add({'ID người dùng': uid,'Email':user?.email,'Time': formattedDate})
-            //.then((value) => print('ID add: ${uid}' + 'Email add: ${user?.email}' + 'Time: $formattedDate'))
+        users.add({'ID người dùng': uid,'Email':user?.email,'Time': formattedDate,'Day':today})
+        //.then((value) => print('ID add: ${uid}' + 'Email add: ${user?.email}' + 'Time: $formattedDate'))
             .catchError(
                 (error) => print('Faild to add user: $error'));
       }

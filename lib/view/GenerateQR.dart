@@ -1,3 +1,6 @@
+import 'package:app/view/User_Profile.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
@@ -6,74 +9,15 @@ class GenerateQRPage extends StatefulWidget {
   _GenerateQRPageState createState() => _GenerateQRPageState();
 }
 class _GenerateQRPageState extends State<GenerateQRPage> {
-  TextEditingController phonecontroller = TextEditingController();
-  TextEditingController teamscontroller = TextEditingController();
-  TextEditingController fbcontroller = TextEditingController();
-  TextEditingController istacontroller = TextEditingController();
-  var _phoneInvalid = false;
-  var _teamsInvalid = false;
-  var _fbInvalid = false;
-  var _instaInvalid = false;
-  var _phoneError = "Inserted phone number is not valid";
-  var _teamsError = "Inserted MS Teams account is not valid";
-  var _fbError = "Inserted Facebook URL is not valid";
-  var _instaError = "Inserted Instagram URL is not valid";
 
-
-  void content(){
-    setState((){
-      if(phonecontroller.text.length < 9 || !phonecontroller.text.contains("0")){
-        _phoneInvalid = true;
-      }else{
-        _phoneInvalid = false;
-      }
-      if(teamscontroller.text.length < 5 || !teamscontroller.text.contains('@') ){
-        _teamsInvalid = true;
-      }else{
-        _teamsInvalid = false;
-      }
-      if(fbcontroller.text.length < 5 || !fbcontroller.text.contains('facebook.com') ){
-        _fbInvalid = true;
-      }else {
-        _fbInvalid = false;
-      }
-      if(istacontroller.text.length < 5 || !istacontroller.text.contains('instagram.com') ){
-        _instaInvalid = true;
-      }else {
-        _instaInvalid = false;
-      }
-    });
-  }
-
-  Widget _entryField(
-      bool obscure,
-      String title,
-      TextEditingController controller,
-      var users,
-      var error,
-      ) {
-    return TextField(
-      obscureText: obscure,
-      controller: controller,
-      decoration: InputDecoration(
-        errorText: users ? error : null,
-        enabledBorder: OutlineInputBorder(
-          // borderSide:
-          // BorderSide(width: 3, color: Colors.greenAccent), //<-- SEE HERE
-          borderRadius: BorderRadius.circular(20.0),
-        ),
-        labelText: title,
-      ),
-    );
-  }
-
-
+  final Stream<QuerySnapshot> user_profile = FirebaseFirestore.instance.collection('User_Profile').snapshots();
+  final FirebaseAuth auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Generate your QR code'),
+        title: Text('Your personal QR code'),
         actions: <Widget>[
           IconButton(
             icon: Icon(
@@ -90,45 +34,80 @@ class _GenerateQRPageState extends State<GenerateQRPage> {
       body: SingleChildScrollView(
         child: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              QrImage(
-                data: "BKLAB | " + phonecontroller.text + " | " + teamscontroller.text + " | " + fbcontroller.text + " | " + istacontroller.text,
-                size: 300,
-                embeddedImage: AssetImage('images/logo.png'),
-                embeddedImageStyle: QrEmbeddedImageStyle(
-                    size: Size(80,80)
-                ),
+              SizedBox(
+                height: 50,
               ),
-              Container(
-                  margin: EdgeInsets.all(20),
-                  child: _entryField(false,'Insert your phone number', phonecontroller,_phoneInvalid,_phoneError)
+              _bodyQR(),
+              SizedBox(
+                height: 10,
               ),
-              Container(
-                  margin: EdgeInsets.all(20),
-                  child: _entryField(false,'Insert your MS Teams account', teamscontroller,_teamsInvalid,_teamsError)
-              ),
-              Container(
-                  margin: EdgeInsets.all(20),
-                  child: _entryField(false,'Insert your Facebook URL', fbcontroller,_fbInvalid,_fbError)
-              ),
-              Container(
-                  margin: EdgeInsets.all(20),
-                  child: _entryField(false,'Insert your Instagram URL', istacontroller,_instaInvalid,_instaError)
+              Text("Scan QR code above\nfor infomation exchange\n\nOr create one if\nyou do not have yet", style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.w600),),
+              SizedBox(
+                height: 10,
               ),
               ElevatedButton(
                   onPressed: () {
-                    content();
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) => UserProfile()));
+                    // content();
                   },
-                  child: Text('GENERATE QR')
+                  child: Text('Create or change personal QR')
 
               ),
-
-
             ],
           ),
         ),
       ),
+    );
+  }
+  Widget _bodyQR(){
+    final User? user = auth.currentUser; // push user info to firebase when they update status
+    final uid = user?.uid;
+    return StreamBuilder<QuerySnapshot>(
+        stream: user_profile,
+        builder: (
+            BuildContext context,
+            AsyncSnapshot<QuerySnapshot> snapshot,
+            ){
+          if (snapshot.hasError) {
+            return Text('Something went wrong.');
+          }
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Text('Loading');
+          }
+          return Column(
+            children: snapshot.data!.docs
+                .map((DocumentSnapshot document){
+              Map<String, dynamic> data =
+              document.data()! as Map<String, dynamic>;
+              if(data['ID'] == uid){
+                return Column(
+                  children: [
+                    QrImage(
+                      // data: "BKLAB | " + data['Phone Number'].toString() + " | " + data['MS Teams'].toString() + " | " + data['Facebook URL'].toString() + " | " + data['Instagram URL'].toString(),
+                      size: 300,
+                      embeddedImage: AssetImage('images/logo.png'),
+                      embeddedImageStyle: QrEmbeddedImageStyle(
+                          size: Size(80,80)
+                      ),
+                      data: "BKLAB | " + data['Phone Number'].toString() + " | " + data['MS Teams'].toString() + " | " + data['Facebook URL'].toString() + " | " + data['Instagram URL'].toString(),
+                    ),
+                  ],
+                );
+              }
+
+              else{
+                return Text("");
+              }
+
+            }
+            )
+                .toList()
+                .cast(),
+          );
+        }
     );
   }
 }
