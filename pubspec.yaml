@@ -32,6 +32,7 @@ dependencies:
   firebase_core_web: any
   cloud_firestore: ^3.4.8
   firebase_database: ^9.1.5
+  internet_popup: ^1.0.8+5
 
 
 dev_dependencies:

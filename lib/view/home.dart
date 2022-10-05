@@ -9,6 +9,7 @@ import 'package:app/view/sign_up.dart';
 import 'package:app/widgets/bottombar_item.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:internet_popup/internet_popup.dart';
 
 class Home extends StatefulWidget {
   const Home({ Key? key }) : super(key: key);
@@ -19,6 +20,13 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int activeTab = 0;
+  
+  @override
+  void initState() {
+    super.initState();
+    InternetPopup().initialize(context: context);
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Container(
