@@ -27,7 +27,7 @@ class _AboutPageState extends State<AboutPage> {
     final List<String>content_name  = [
       "BK Lab Manager",
       "bklab-mana",
-      "1.1.0",
+      "1.2.0",
       "2",
       'Not set',
       "  Son Tran BK \n  and CTARG",

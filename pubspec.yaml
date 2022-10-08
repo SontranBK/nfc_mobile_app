@@ -21,8 +21,6 @@ dependencies:
   animated_text_kit: ^4.2.2
   qr_code_scanner: any
   splash_screen_view: ^3.0.0
-  flutter_svg: ^0.22.0
-  multiavatar: ^0.1.5
   badges: ^2.0.2
   awesome_dialog: ^3.0.1
   intl: ^0.17.0
@@ -33,6 +31,7 @@ dependencies:
   cloud_firestore: ^3.4.8
   firebase_database: ^9.1.5
   internet_popup: ^1.0.8+5
+  profile: ^0.0.1
 
 
 dev_dependencies:

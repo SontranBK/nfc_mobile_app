@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:app/view/ScanQR.dart';
 import 'package:flutter/services.dart';
+import 'package:profile/profile.dart';
 
 class LinkPage extends StatelessWidget {
   LinkPage({Key? key, required this.qrResult}) : super(key: key);
@@ -56,15 +57,24 @@ class LinkPage extends StatelessWidget {
         body: ListView(
           padding: EdgeInsets.all(2),
           children: [
-            SizedBox(height: 50,),
-            Center(
-              child: Text('  Please copy phone number, MS Teams account\n  Or direct to Facebook, Instagram', style: TextStyle(fontSize: 20,color: Colors.black),),
+            SizedBox(height: 20,),
+            Profile(
+              imageUrl: "https://res.cloudinary.com/teepublic/image/private/s--WlHDkW0o--/t_Preview/b_rgb:0195c3,c_lpad,f_jpg,h_630,q_90,w_1200/v1570281377/production/designs/6215195_0.jpg",
+              name: content3,
+              website: "",
+              designation: content4,
+              email: content2,
+              phone_number: content1,
             ),
-            SizedBox(height: 30,),
+            Container(
+              alignment: Alignment.center,
+              padding: const EdgeInsets.fromLTRB(60, 30, 60, 40),
+              child: Text('You can copy phone number, MS Teams account, or open Facebook and Instagram page with buttons below',style: TextStyle(fontSize: 14), textAlign: TextAlign.center),
+            ),
             FormSection(children: [
               Container(),
               FormRow(
-                  title: Text('Phone Number'),
+                  title: Text('Copy Phone Number'),
                   trailing: Icon(Icons.content_copy),
                   onTap: () async {
                     await Clipboard.setData(ClipboardData(text: content1)).then((_){
@@ -77,7 +87,7 @@ class LinkPage extends StatelessWidget {
                       launch('tel:+${content[1].toString()}')//('https://nfcmanager.naokiokada.com/privacy-policy/'),*/
               ),
               FormRow(
-                  title: Text('Ms Teams'),
+                  title: Text('Copy MS Teams Account'),
                   trailing: Icon(Icons.content_copy),
                   onTap: () async {
                     await Clipboard.setData(ClipboardData(text: content2)).then((_){
@@ -88,12 +98,12 @@ class LinkPage extends StatelessWidget {
                   //=> launch("https://"+ content2)
               ),
               FormRow(
-                  title: Text('Facebook'),
+                  title: Text('Open Facebook Profile'),
                   trailing: Icon(Icons.open_in_new),
                   onTap: () => launch(content3)
               ),
               FormRow(
-                  title: Text('Instagram'),
+                  title: Text('Open Instagram Profile'),
                   trailing: Icon(Icons.open_in_new),
                   onTap: () => launch(content4)
               ),
