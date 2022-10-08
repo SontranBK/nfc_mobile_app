@@ -9,7 +9,9 @@ An app for small and medium organizations (SME) manager, with NFC-tag, e-tag and
 ## 2. Updates and releases!!!
 For all release features and publised product UI, check out [release page](https://github.com/SontranBK/nfc_mobile_app/releases)
 * 【Sep 16, 2022】 version 0.2.0-alpha (pre-released version)
-* 【Sep 22, 2022】 first version release
+* 【Sep 22, 2022】 version 1.0.0, first version release 
+* 【Oct 08, 2022】 version 1.1.0, minor improved from first version
+
 ## 3. Reproducing process
 <details>
 <summary> 3.1. Support plaftforms</summary>
