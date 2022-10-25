@@ -117,9 +117,13 @@ samples, guidance on mobile development, and a full API reference.
 - Also, QR scanning codes below for checking in 410 C9 Building, then click Update Status:
 
 <p align="center">
-<img src="https://user-images.githubusercontent.com/97107855/193439217-1e0781cb-028f-417f-ae9e-da4c8a86f95a.png" width="250">
+<img src="https://user-images.githubusercontent.com/97107855/193439217-1e0781cb-028f-417f-ae9e-da4c8a86f95a.png" width="200">
 
-<img src="https://user-images.githubusercontent.com/97107855/193439239-b89867c9-bc59-4674-8bae-42fabb986d30.png" width="250">
+<img src="https://user-images.githubusercontent.com/58517115/197675993-bdd14b9f-39da-463a-9b0f-afd06e36b94e.png" width="200">
+    
+<img src="https://user-images.githubusercontent.com/97107855/193439239-b89867c9-bc59-4674-8bae-42fabb986d30.png" width="200">
+          
+
 </p>
 
 - ***NOTE:*** user can only check in and update status as ONLINE between 8 a.m and 6 p.m everyday, including Saturday and Sunday. Outside these time range, "Update Status" button will return error dialog and user's status remains OFFLINE
