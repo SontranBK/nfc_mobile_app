@@ -23,13 +23,17 @@ class _UserPageState extends State<UserPage> {
   }
 
   getBody(){
+    double  heightR,widthR;
+    heightR = MediaQuery.of(context).size.height / 1080; //v26
+    widthR = MediaQuery.of(context).size.width / 2400;
+    var curR = widthR;
     return
     SingleChildScrollView(
       child: Column(
         children: [
-          SizedBox(height: 40,),
+          SizedBox(height: 50*heightR,),
           getActions(),
-          SizedBox(height: 40,),
+          SizedBox(height: 50*heightR,),
 
         ],
       ),

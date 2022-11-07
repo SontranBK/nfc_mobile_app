@@ -18,6 +18,10 @@ class _ChagePasswordPageState extends State<ChagePasswordPage> {
 
   @override
   Widget build(BuildContext context) {
+    double  heightR,widthR;
+    heightR = MediaQuery.of(context).size.height / 1080; //v26
+    widthR = MediaQuery.of(context).size.width / 2400;
+    var curR = widthR;
     return Scaffold(
         appBar: AppBar(
         title: Text('Update your password'),
@@ -35,33 +39,33 @@ class _ChagePasswordPageState extends State<ChagePasswordPage> {
       ),
         backgroundColor: Colors.white,
         body: Padding(
-            padding: const EdgeInsets.all(13),
+            padding:  EdgeInsets.all(14*heightR),
             child: ListView(
               children: <Widget>[
                 Container(
                     alignment: Alignment.center,
-                    padding: const EdgeInsets.all(10),
-                    margin: EdgeInsets.only(top: 100),
-                    child: const Text(
+                    padding:  EdgeInsets.all(11*heightR),
+                    margin: EdgeInsets.only(top: 110*heightR),
+                    child:  Text(
                       'Change your password',
                       style: TextStyle(
                           color: Colors.blue,
                           fontWeight: FontWeight.w500,
-                          fontSize: 28),
+                          fontSize: 158*curR),
                     )),
                 Container(
                     alignment: Alignment.center,
-                    padding: const EdgeInsets.all(10),
-                    margin: EdgeInsets.only(bottom: 90,top: 5),
-                    child: const Text(
+                    padding:  EdgeInsets.all(10*heightR),
+                    margin: EdgeInsets.only(bottom: 90*heightR,top: 5*heightR),
+                    child:  Text(
                       'Confirm your old password and fill in new one!',
                       style: TextStyle(
                           color: Colors.blue,
                           fontWeight: FontWeight.w500,
-                          fontSize: 18),
+                          fontSize: 108*curR),
                     )),
                 Container(
-                  padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
+                  padding:  EdgeInsets.fromLTRB(50*curR,25*heightR, 50*curR, 0),
                   child: TextField(
                     controller: oldpasswordController,
                     decoration: InputDecoration(
@@ -75,7 +79,7 @@ class _ChagePasswordPageState extends State<ChagePasswordPage> {
                   ),
                 ),
                 Container(
-                  padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
+                  padding:  EdgeInsets.fromLTRB(50*curR,25*heightR, 50*curR, 0),
                   child: TextField(
                     controller: newpasswordController,
                     decoration: InputDecoration(
@@ -89,7 +93,7 @@ class _ChagePasswordPageState extends State<ChagePasswordPage> {
                   ),
                 ),
                 Container(
-                  padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
+                  padding:  EdgeInsets.fromLTRB(50*curR,25*heightR, 50*curR, 0),
                   child: TextField(
                     obscureText: true,
                     controller: confirmedpasswordController,
@@ -104,13 +108,13 @@ class _ChagePasswordPageState extends State<ChagePasswordPage> {
                   ),
                 ),
                 Container(
-                    height: 60,
-                    margin: EdgeInsets.only(top: 70),
-                    padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                    height: 80*heightR,
+                    margin: EdgeInsets.only(top: 85*heightR),
+                    padding:  EdgeInsets.fromLTRB(50*curR,0 , 50*curR, 0),
                     child: ElevatedButton(
-                      child: const Text(
+                      child:  Text(
                         'Update password',
-                        style: TextStyle(fontSize: 24),
+                        style: TextStyle(fontSize: 144*curR),
                       ),
                       onPressed: () {
                         Navigator.push(context, MaterialPageRoute(

@@ -27,6 +27,10 @@ class _LogInPageState extends State<LogInPage> {
 
   @override
   Widget build(BuildContext context) {
+    double  heightR,widthR;
+    heightR = MediaQuery.of(context).size.height / 1080; //v26
+    widthR = MediaQuery.of(context).size.width / 2400;
+    var curR = widthR;
     Widget example1 = SplashScreenView(
       navigateRoute: SignPage(),
       duration: 5000,
@@ -35,7 +39,7 @@ class _LogInPageState extends State<LogInPage> {
       text: "BK Lab Manager",
       textType: TextType.ColorizeAnimationText,
       textStyle: TextStyle(
-        fontSize: 40.0,
+        fontSize: 220*curR,
       ),
       colors: [
         Colors.purple,
@@ -62,6 +66,7 @@ class SignPage extends StatefulWidget {
 }
 
 class _SignPageState extends State<SignPage> {
+
   bool showPass = false;
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -94,40 +99,50 @@ class _SignPageState extends State<SignPage> {
 
   @override
   Widget build(BuildContext context) {
+    double  heightR,widthR;
+    heightR = MediaQuery.of(context).size.height / 1080; //v26
+    widthR = MediaQuery.of(context).size.width / 2400;
+    var curR = widthR;
     return Scaffold(
         backgroundColor: Colors.white,
         body: Padding(
-            padding: const EdgeInsets.all(13),
+            padding:  EdgeInsets.all(13*curR),
             child: ListView(
               children: <Widget>[
                 Container(
                     alignment: Alignment.center,
-                    padding: const EdgeInsets.all(10),
-                    margin: EdgeInsets.only(top: 70),
-                    child: const Text(
+                    padding:  EdgeInsets.only(top: 10*curR,left: 10*curR,right: 10*curR,bottom: 10*curR),
+                    margin: EdgeInsets.only(top: 70 * heightR),
+                    child:  Text(
                       'Welcome Back!',
                       style: TextStyle(
                           color: Colors.blue,
                           fontWeight: FontWeight.w500,
-                          fontSize: 30),
+                          fontSize: 200 * curR),
                     )),
                 Container(
-                  height: 300,
-                  padding: const EdgeInsets.all(35),
-                  margin: EdgeInsets.only(bottom: 30),
+                  // color: Colors.red,
+                  height: 450*heightR,
+                  padding:  EdgeInsets.all(40*heightR),
+                  margin: EdgeInsets.only(bottom: 30*heightR),
                   alignment: Alignment.center,
                   child: Image.asset('assets/lab_logo.png'),
                 ),
                 Container(
-                  padding: const EdgeInsets.all(10),
+                    padding:  EdgeInsets.fromLTRB(60*widthR, 0, 60*widthR, 10*heightR),
                   child: _entryField(false,'User Name', nameController,_userInvalid,_userNameError)
                 ),
                 Container(
-                  padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+                  padding:  EdgeInsets.fromLTRB(60*widthR, 10*heightR, 60*widthR, 0),
                   child: Stack(
                     alignment: AlignmentDirectional.centerEnd,
                     children: <Widget>[
-                      _entryField(!showPass,'Password', passwordController,_passIvalid,_passwordError),
+                      _entryField(
+                          !showPass,
+                          'Password',
+                          passwordController,
+                          _passIvalid,
+                          _passwordError),
                       // GestureDetector(
                       //   onTap: onShowPass,
                       //   child: Text(
@@ -148,10 +163,10 @@ class _SignPageState extends State<SignPage> {
                     onPressed: () {
                       //forgot password screen
                     },
-                    child: const Text(
+                    child:  Text(
                       'Forgot Password?',
                       style: TextStyle(
-                          fontSize: 17
+                          fontSize: 100*curR,
                       ),
                     ),
                   ),
@@ -165,13 +180,13 @@ class _SignPageState extends State<SignPage> {
                 //   ),
                 // ),
                 Container(
-                    height: 60,
-                    margin: EdgeInsets.only(top: 60),
-                    padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                    height: 85*heightR,
+                    margin: EdgeInsets.only(top: 60*heightR),
+                    padding:  EdgeInsets.fromLTRB(60*widthR, 0, 60*widthR, 0),
                     child: ElevatedButton(
-                      child: const Text(
+                      child:  Text(
                         'Login',
-                        style: TextStyle(fontSize: 24),
+                        style: TextStyle(fontSize: 150*curR),
                       ),
                       onPressed: () {
                         _onLoginClick();
@@ -180,23 +195,29 @@ class _SignPageState extends State<SignPage> {
                       },
                     )),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    const Text('Do not have an account?',
-                      style: TextStyle(
-                        fontSize: 18,
-                      ),),
-                    TextButton(
-                      child: const Text(
-                        'Sign up',
-                        style: TextStyle(fontSize: 20),
-                      ),
-                      onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(
-                          builder: (context) => SignUpPage(),
-                        ));
-                      },
-                    )
+                     Container(
+                       margin: EdgeInsets.only(left: 200*widthR),
+                       child: Text('Do not have an account?',
+                         style: TextStyle(
+                           fontSize: 105*curR,
+                         ),),
+                     ),
+                    Container(
+                        margin: EdgeInsets.only(right: 220*widthR),
+                        child: TextButton(
+                        child:  Text(
+                          'Sign up',
+                          style: TextStyle(fontSize: 110*curR),
+                        ),
+                        onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(
+                            builder: (context) => SignUpPage(),
+                          ));
+                        },
+                      )
+                    ),
                   ],
                 ),
               ],
