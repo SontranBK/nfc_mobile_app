@@ -48,9 +48,13 @@ class _HomeState extends State<Home> {
   }
 
   Widget getHomeButton(){
+    double  heightR,widthR;
+    heightR = MediaQuery.of(context).size.height / 1080; //v26
+    widthR = MediaQuery.of(context).size.width / 2400;
+    var curR = widthR;
     return Container(
-      margin: EdgeInsets.only(top: 35),
-      padding: EdgeInsets.all(5),
+      margin: EdgeInsets.only(top: 28*heightR),
+      // padding: EdgeInsets.all(30*heightR),
       child: GestureDetector(
         onTap: () {
           setState(() {
@@ -58,7 +62,7 @@ class _HomeState extends State<Home> {
           });
         },
         child: Container(
-            padding: EdgeInsets.all(10),
+            padding: EdgeInsets.all(60*curR),
             decoration: BoxDecoration(
               border: Border.all(
                 color: primary,
@@ -67,15 +71,21 @@ class _HomeState extends State<Home> {
               color: primary,
               //shape: BoxShape.circle,
             ),
-            child: Icon(Icons.qr_code_scanner, color: Colors.white, size: 42,)
+            child: Icon(Icons.qr_code_scanner,
+              color: Colors.white,
+              size: 280*curR,),
           ),
       ),
     );
   }
 
   Widget getBottomBar() {
+    double  heightR,widthR;
+    heightR = MediaQuery.of(context).size.height / 1080; //v26
+    widthR = MediaQuery.of(context).size.width / 2400;
+    var curR = widthR;
     return Container(
-      height: 100,
+      height: 128*heightR,
       width: double.infinity,
       decoration: BoxDecoration(
         color: bottomBarColor,
@@ -93,39 +103,58 @@ class _HomeState extends State<Home> {
         ]
       ),
       child: Padding(
-        padding: const EdgeInsets.only(left: 25, right: 25, top: 15),
+        padding:  EdgeInsets.only(left: 125*widthR, right: 125*widthR,top: 10*heightR),
         child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              BottomBarItem(Icons.home_rounded, "Home", isActive: activeTab == 0, activeColor: primary,
+              BottomBarItem(
+                Icons.home_rounded,
+                "Home",
+                isActive: activeTab == 0,
+                activeColor: primary,
                 onTap: () {
                   setState(() {
                     activeTab = 0;
                   });
                 },
               ),
-              BottomBarItem(Icons.person_rounded, "Users", isActive: activeTab == 1, activeColor: primary,
+              BottomBarItem(
+                Icons.person_rounded,
+                "Users",
+                isActive: activeTab == 1,
+                activeColor: primary,
                 onTap: () {
                   setState(() {
                     activeTab = 1;
                   });
                 },
               ),
-              BottomBarItem(Icons.qr_code_scanner, "Scan QR", isActive: activeTab == 2, activeColor: primary,
+              BottomBarItem(
+                Icons.qr_code_scanner,
+                "QR Code",
+                isActive: activeTab == 2,
+                activeColor: primary,
                 onTap: () {
                   setState(() {
                     activeTab = 2;
                   });
                 },
               ),
-              BottomBarItem(Icons.settings, "Setting", isActive: activeTab == 3, activeColor: primary,
+              BottomBarItem(
+                Icons.settings,
+                "Setting",
+                isActive: activeTab == 3,
+                activeColor: primary,
                 onTap: () {
                   setState(() {
                     activeTab = 3;
                   });
                 },
               ),
-              BottomBarItem(Icons.info, "Info", isActive: activeTab == 4, activeColor: primary,
+              BottomBarItem(Icons.info,
+                "Info",
+                isActive: activeTab == 4,
+                activeColor: primary,
                 onTap: () {
                   setState(() {
                     activeTab = 4;

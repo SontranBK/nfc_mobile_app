@@ -30,6 +30,10 @@ class LinkPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double  heightR,widthR;
+    heightR = MediaQuery.of(context).size.height / 1080; //v26
+    widthR = MediaQuery.of(context).size.width / 2400;
+    var curR = widthR;
     decodeQR();
     if(content[0] =="BKLAB"){
       content1 = content[1];
@@ -55,9 +59,9 @@ class LinkPage extends StatelessWidget {
         ),
         backgroundColor: Colors.white,
         body: ListView(
-          padding: EdgeInsets.all(2),
+          padding: EdgeInsets.all(4*heightR),
           children: [
-            SizedBox(height: 20,),
+            SizedBox(height: 22*heightR,),
             Profile(
               imageUrl: "https://res.cloudinary.com/teepublic/image/private/s--WlHDkW0o--/t_Preview/b_rgb:0195c3,c_lpad,f_jpg,h_630,q_90,w_1200/v1570281377/production/designs/6215195_0.jpg",
               name: content3,
@@ -68,7 +72,7 @@ class LinkPage extends StatelessWidget {
             ),
             Container(
               alignment: Alignment.center,
-              padding: const EdgeInsets.fromLTRB(60, 30, 60, 40),
+              padding:  EdgeInsets.fromLTRB(240*curR, 30*heightR, 240*curR, 40*heightR),
               child: Text('You can copy phone number, MS Teams account, or open Facebook and Instagram page with buttons below',style: TextStyle(fontSize: 14), textAlign: TextAlign.center),
             ),
             FormSection(children: [

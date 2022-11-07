@@ -16,6 +16,10 @@ class _AboutPageState extends State<AboutPage> {
 
   @override
   Widget build(BuildContext context) {
+    double  heightR,widthR;
+    heightR = MediaQuery.of(context).size.height / 1080; //v26
+    widthR = MediaQuery.of(context).size.width / 2400;
+    var curR = widthR;
     final List<String>title_name  = [
       "App Display Name",
       "App Package Name",
@@ -36,17 +40,17 @@ class _AboutPageState extends State<AboutPage> {
     return Scaffold(
       appBar: CustomAppbar(title: "App Information!"),
       body:Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      padding:  EdgeInsets.symmetric(horizontal: 20.0 * heightR),
       child: Center(
       child: GridView.builder(
         itemCount: title_name.length,
         //physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisSpacing: 15,
-            childAspectRatio: 1,
+        gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisSpacing: 15*heightR,
+            childAspectRatio: 1.35*heightR,
             crossAxisCount: 2,
-            mainAxisSpacing: 40),
+            mainAxisSpacing: 40*heightR),
         itemBuilder: (context, index) {
           return Container(
             decoration: BoxDecoration(
@@ -54,7 +58,9 @@ class _AboutPageState extends State<AboutPage> {
               color: kLightBlue,
             ),
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+              padding:  EdgeInsets.symmetric(
+                  horizontal: 80*curR,
+                  vertical: 120*curR),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -63,8 +69,8 @@ class _AboutPageState extends State<AboutPage> {
                     title_name[index],
                     maxLines: 2,
                     softWrap: true,
-                    style: const TextStyle(
-                      fontSize: 17,
+                    style:  TextStyle(
+                      fontSize: 120*curR,
                       color: Color(0xff8EA3B7),
                     ),
                   ),
@@ -72,16 +78,16 @@ class _AboutPageState extends State<AboutPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        height: 35,
-                        width: 8,
+                        height: 45*heightR,
+                        width: 48*curR,
                         decoration: BoxDecoration(
                             color: kDarkBlue,
                             borderRadius: BorderRadius.circular(15)),
                       ),
                       Text(
                         content_name[index],
-                        style: const TextStyle(
-                          fontSize: 11,
+                        style:  TextStyle(
+                          fontSize: 72*curR,
                           fontWeight: FontWeight.bold,
                           color: Color(0xff006ED3),
                         ),

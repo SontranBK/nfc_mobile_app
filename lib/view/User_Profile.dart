@@ -88,6 +88,10 @@ class _UserProfileState extends State<UserProfile> {
 
   @override
   Widget build(BuildContext context) {
+    double  heightR,widthR;
+    heightR = MediaQuery.of(context).size.height / 1080; //v26
+    widthR = MediaQuery.of(context).size.width / 2400;
+    var curR = widthR;
     final User? user =
         auth.currentUser; // push user info to firebase when they update status
     final uid = user?.uid;
@@ -123,44 +127,44 @@ class _UserProfileState extends State<UserProfile> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SizedBox(
-                        height: 40,
+                        height: 50*heightR,
                       ),
                       Container(
                         alignment: Alignment.center,
-                        padding: const EdgeInsets.fromLTRB(50, 40, 50, 40),
+                        padding: EdgeInsets.fromLTRB(55*heightR, 260*widthR, 55*heightR, 260*widthR),
                         child: Text('Create or change your personal profile. We will generate your own QR code from your profile',style: TextStyle(fontSize: 18), textAlign: TextAlign.center),
                       ),
                       SizedBox(
-                        height: 15,
+                        height: 20*heightR,
                       ),
                       Container(
-                        margin: EdgeInsets.all(20),
+                        margin: EdgeInsets.all(22*heightR),
                         child: _entryField(false, 'Insert your Phone Number',
                             phonecontroller, _phoneInvalid, _phoneError),
                       ),
                       Container(
-                        margin: EdgeInsets.all(20),
+                        margin: EdgeInsets.all(20*heightR),
                         child: _entryField(false, 'Insert your MS Teams account',
                             teamscontroller, _teamsInvalid, _teamsError),
                       ),
                       Container(
-                        margin: EdgeInsets.all(20),
+                        margin: EdgeInsets.all(22*heightR),
                         child: _entryField(false, 'Insert your Facebook URL',
                             fbcontroller, _fbInvalid, _fbError),
                       ),
                       Container(
-                        margin: EdgeInsets.all(20),
+                        margin: EdgeInsets.all(22*heightR),
                         child: _entryField(false, 'Insert your Instagram URL',
                             istacontroller, _instaInvalid, _instaError),
                       ),
                       Container(
-                          height: 60,
-                          margin: EdgeInsets.only(top: 60),
-                          padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                          height: 80*heightR,
+                          margin: EdgeInsets.only(top: 70*heightR),
+                          padding:  EdgeInsets.fromLTRB(120*curR, 0, 120*curR, 0),
                           child: ElevatedButton(
-                            child: const Text(
+                            child:  Text(
                               'Save your profile',
-                              style: TextStyle(fontSize: 20),
+                              style: TextStyle(fontSize: 120*curR),
                             ),
                             onPressed: () {
                               content();
@@ -217,15 +221,16 @@ class _UserProfileState extends State<UserProfile> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SizedBox(
-                        height: 40,
+                        height: 40*heightR,
                       ),
                       Container(
                         alignment: Alignment.center,
-                        padding: const EdgeInsets.all(40.0),
-                        child: Text('Your personal QR is ready!\nWe had generated personal QR from your profile.',style: TextStyle(fontSize: 18), textAlign: TextAlign.center),
+                        padding:  EdgeInsets.all(40.0*heightR),
+                        child: Text('Your personal QR is ready!\nWe had generated personal QR from your profile.',
+                            style: TextStyle(fontSize: 110*curR), textAlign: TextAlign.center),
                       ),
                       SizedBox(
-                        height: 10,
+                        height: 12*heightR,
                       ),
                       
                       Profile(
@@ -237,13 +242,13 @@ class _UserProfileState extends State<UserProfile> {
                         phone_number: data['Phone Number'],
                       ),
                       Container(
-                          height: 60,
-                          margin: EdgeInsets.only(top: 20),
-                          padding: const EdgeInsets.fromLTRB(40, 0, 40, 0),
+                          height: 78*heightR,
+                          margin: EdgeInsets.only(top: 32*heightR),
+                          padding: EdgeInsets.fromLTRB(180*widthR, 0, 180*widthR, 0),
                           child: ElevatedButton(
-                            child: const Text(
+                            child:  Text(
                               'Re-create your profile',
-                              style: TextStyle(fontSize: 18),
+                              style: TextStyle(fontSize: 118*curR),
                             ),
                             onPressed: (){
                               AwesomeDialog(
@@ -269,13 +274,13 @@ class _UserProfileState extends State<UserProfile> {
                             },
                           )),
                       Container(
-                          height: 60,
-                          margin: EdgeInsets.only(top: 20),
-                          padding: const EdgeInsets.fromLTRB(40, 0, 40, 0),
+                          height: 78*heightR,
+                          margin: EdgeInsets.only(top: 32*heightR),
+                          padding: EdgeInsets.fromLTRB(180*widthR, 0, 180*widthR, 0),
                           child: ElevatedButton(
-                            child: const Text(
+                            child:  Text(
                               'Show your personal QR',
-                              style: TextStyle(fontSize: 18),
+                              style: TextStyle(fontSize: 118*curR),
                             ),
                             onPressed: (){Navigator.of(context)
                                 .push(MaterialPageRoute(builder: (context) => GenerateQRPage()));
