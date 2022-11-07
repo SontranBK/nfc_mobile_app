@@ -172,3 +172,4 @@ samples, guidance on mobile development, and a full API reference.
 ## 6. Authors and credits:
 In research and development process, all credits go to ***Son Tran BK (1st author), Duc Anh BK (2nd author) and CTARG LAB members***, in EEE, HUST (Hanoi University of Science and Technology), Ha Noi, Viet Nam
 
+
