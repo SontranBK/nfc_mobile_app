@@ -19,6 +19,10 @@ class _UserStatusPageState extends State<UserStatusPage> {
 
   @override
   Widget build(BuildContext context) {
+    double  heightR,widthR;
+    heightR = MediaQuery.of(context).size.height / 1080; //v26
+    widthR = MediaQuery.of(context).size.width / 2400;
+    var curR = widthR;
     return Scaffold(
       appBar: AppBar(
         title: Text('List Of Online Users'),
@@ -41,11 +45,11 @@ class _UserStatusPageState extends State<UserStatusPage> {
             Container(
               child: Icon(
                 Icons.import_contacts,
-                size: 100,
+                size: 120*heightR,
               ),
             ),
             SizedBox(
-              height: 600,
+              height: 624*heightR,
               child: _buildSuggestions(),
             ),
           ], //<Widget>[]
@@ -55,6 +59,10 @@ class _UserStatusPageState extends State<UserStatusPage> {
   }
 
   Widget _buildSuggestions() {
+    double  heightR,widthR;
+    heightR = MediaQuery.of(context).size.height / 1080; //v26
+    widthR = MediaQuery.of(context).size.width / 2400;
+    var curR = widthR;
     String today = DateFormat('dd MMM yyyy').format(now);
     return StreamBuilder<QuerySnapshot>(
       stream: user,
@@ -86,9 +94,9 @@ class _UserStatusPageState extends State<UserStatusPage> {
                   child: Column(
                     children: [
                       Container(
-                        height: 55,
+                        height: 72*heightR,
                         alignment: Alignment.center,
-                        margin: EdgeInsets.only(bottom: 5,top: 10),
+                        margin: EdgeInsets.only(bottom: 6*heightR,top: 12*heightR),
                         decoration: BoxDecoration(
                           color: Colors.greenAccent,
                           gradient: new LinearGradient(
@@ -101,13 +109,13 @@ class _UserStatusPageState extends State<UserStatusPage> {
                             Text(
                                 data['Email'].toString(),
                                 style: TextStyle(
-                                  fontSize: 18,
+                                  fontSize: 90*curR,
                                   color: Colors.black,
                                 )),
                             Text(
                                 'checked in at: '+data['Time'].toString(),
                                 style: TextStyle(
-                                  fontSize: 12,
+                                  fontSize: 78*curR,
                                 )),
 
                           ],
