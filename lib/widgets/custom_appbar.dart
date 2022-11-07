@@ -21,6 +21,10 @@ class _CustomAppbarState extends State<CustomAppbar> {
 
   @override
   Widget build(BuildContext context) {
+    double  heightR,widthR;
+    heightR = MediaQuery.of(context).size.height / 1080; //v26
+    widthR = MediaQuery.of(context).size.width / 2400;
+    var curR = widthR;
     final User? user =
         auth.currentUser;
     var string = user?.email ?? 0 ;
@@ -32,8 +36,8 @@ class _CustomAppbarState extends State<CustomAppbar> {
     }
     result = string.toString().substring(0, i);
     return Container(
-      height: 180,
-      padding: EdgeInsets.only(left: 20, right: 20, top: 35),
+      height: 180*heightR,
+      padding: EdgeInsets.only(left: 130*widthR, right: 130*widthR, top: 50*heightR),
       decoration: BoxDecoration(
           color: appBgColor,
           borderRadius: BorderRadius.only(bottomLeft: Radius.circular(40), bottomRight: Radius.circular(40)),
@@ -52,10 +56,10 @@ class _CustomAppbarState extends State<CustomAppbar> {
         children: [
           CircleAvatar(
             backgroundImage: NetworkImage(
-                "https://scontent.fhan2-5.fna.fbcdn.net/v/t39.30808-6/256625965_2055617961261792_7247980732642938730_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=xH0qJA0PkR4AX-Mnt_x&_nc_ht=scontent.fhan2-5.fna&oh=00_AT-b5ApATd0KAGRJvfL0PAweRoIOj3RznRvOtrHAuFlSNg&oe=63459624"),
-            radius: 27,
+                "https://res.cloudinary.com/teepublic/image/private/s--WlHDkW0o--/t_Preview/b_rgb:0195c3,c_lpad,f_jpg,h_630,q_90,w_1200/v1570281377/production/designs/6215195_0.jpg"),
+            radius: 180*curR,
           ),
-          SizedBox(width: 17,),
+          SizedBox(width: 100*curR,),
           Expanded(
               child: Container(
                 alignment: Alignment.centerLeft,
@@ -64,16 +68,25 @@ class _CustomAppbarState extends State<CustomAppbar> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Hello ${result.toUpperCase()}", style: TextStyle(color: Colors.grey[700], fontSize: 16),),
-                    SizedBox(height: 5,),
-                    Text(widget.title, style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20),),
+                    Text("Hello ${result.toUpperCase()}",
+                      style: TextStyle(
+                          color: Colors.grey[700],
+                          fontSize: 100*curR
+                      ),
+                    ),
+                    SizedBox(height: 5*heightR,),
+                    Text(widget.title,
+                      style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 120*curR
+                      ),),
                   ],
                 ),
               )
           ),
-          SizedBox(width: 15,),
+          SizedBox(width: 15*curR,),
           Container(
-            padding: EdgeInsets.all(5),
+            padding: EdgeInsets.all( 30*widthR),
             decoration: BoxDecoration(
               color: Colors.white,
               shape: BoxShape.circle,
@@ -87,7 +100,7 @@ class _CustomAppbarState extends State<CustomAppbar> {
               ],
             ),
             child: Badge(
-                padding: EdgeInsets.all(3),
+                padding: EdgeInsets.all(15*curR),
                 position: BadgePosition.topEnd(top: -5, end: 2),
                 badgeContent: Text('', style: TextStyle(color: Colors.white),),
                 child: Icon(Icons.notifications_rounded)
