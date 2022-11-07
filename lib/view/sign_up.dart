@@ -29,36 +29,40 @@ class _SignUpPageState extends State<SignUpPage> {
   }
   @override
   Widget build(BuildContext context) {
+    double  heightR,widthR;
+    heightR = MediaQuery.of(context).size.height / 1080; //v26
+    widthR = MediaQuery.of(context).size.width / 2400;
+    var curR = widthR;
     return Scaffold(
       backgroundColor: Colors.white,
       body: Padding(
-          padding: const EdgeInsets.all(13),
+          padding:  EdgeInsets.all(65*curR),
           child: ListView(
             children: <Widget>[
               Container(
                   alignment: Alignment.center,
-                  padding: const EdgeInsets.all(10),
-                  margin: EdgeInsets.only(top: 120),
-                  child: const Text(
+                  padding:  EdgeInsets.all(60*curR),
+                  margin: EdgeInsets.only(top: 300*curR),
+                  child:  Text(
                     'Create new account',
                     style: TextStyle(
                         color: Colors.blue,
                         fontWeight: FontWeight.w500,
-                        fontSize: 32),
+                        fontSize: 185*curR),
                   )),
               Container(
                   alignment: Alignment.center,
-                  padding: const EdgeInsets.all(10),
-                  margin: EdgeInsets.only(bottom: 90,top: 5),
-                  child: const Text(
+                  padding:  EdgeInsets.all(40*curR),
+                  margin: EdgeInsets.only(bottom: 120*heightR,top: 15*heightR),
+                  child:  Text(
                     'Lets help you in completing your tasks!',
                     style: TextStyle(
                         color: Colors.blue,
                         fontWeight: FontWeight.w500,
-                        fontSize: 18),
+                        fontSize: 110*curR),
                   )),
               Container(
-                padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
+                padding:  EdgeInsets.fromLTRB(40*widthR, 40*heightR, 40*widthR, 0),
                 child: TextField(
                   controller: _nameController,
                   decoration: InputDecoration(
@@ -72,7 +76,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
               ),
               Container(
-                padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
+                padding:  EdgeInsets.fromLTRB(40*widthR, 40*heightR, 40*widthR, 0),
                 child: TextField(
                   controller: _emailController,
                   decoration: InputDecoration(
@@ -86,7 +90,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
               ),
               Container(
-                padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
+                padding:  EdgeInsets.fromLTRB(40*widthR, 40*heightR, 40*widthR, 0),
                 child: TextField(
                   obscureText: true,
                   controller: _passController,
@@ -101,7 +105,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
               ),
               Container(
-                padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
+                padding:  EdgeInsets.fromLTRB(40*widthR, 40*heightR, 40*widthR, 0),
                 child: TextField(
                   obscureText: true,
                   controller: _passcomfirnController,
@@ -115,39 +119,23 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                 ),
               ),
-              // Container(
-              //   alignment: Alignment.centerRight,
-              //   child: TextButton(
-              //     onPressed: () {
-              //       //forgot password screen
-              //     },
-              //     child: const Text(
-              //       'Forgot Password?',
-              //       style: TextStyle(
-              //           fontSize: 17
-              //       ),
-              //     ),
-              //   ),
-              // ),
-              // TextButton(
-              //   onPressed: () {
-              //     //forgot password screen
-              //   },
-              //   child: const Text(
-              //     'Forgot Password?',
-              //   ),
-              // ),
+
               Container(
-                  height: 60,
-                  margin: EdgeInsets.only(top: 70),
-                  padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                  height: 90*heightR,
+                  margin: EdgeInsets.only(top: 70*heightR),
+                  padding:  EdgeInsets.fromLTRB(40*curR, 0, 40*curR, 0),
                   child: ElevatedButton(
-                    child: const Text(
+                    child:  Text(
                       'Register',
-                      style: TextStyle(fontSize: 24),
+                      style: TextStyle(fontSize: 150*curR),
                     ),
                     onPressed: () {
-                      _onSignUpClicked();
+                      if(_passController.text == _passcomfirnController.text){
+                        _onSignUpClicked();
+                      }
+                      else{
+                        MsgDialog.showMsgDialog(context, "Sign-Up", "Confirm password is incorrect");
+                      }
                         print(_nameController.text);
                         print(_emailController.text);
                         print(_passController.text);
@@ -155,22 +143,28 @@ class _SignUpPageState extends State<SignUpPage> {
                     },
                   )),
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  const Text('Already have an account?',
-                    style: TextStyle(
-                      fontSize: 18,
-                    ),),
-                  TextButton(
-                    child: const Text(
-                      'Sign in',
-                      style: TextStyle(fontSize: 20),
-                    ),
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(
-                        builder: (context) => SignPage(),
-                      ));
-                    },
+                   Container(
+                     margin: EdgeInsets.only(left: 200*widthR),
+                     child: Text('Already have an account?',
+                       style: TextStyle(
+                         fontSize: 105*curR,
+                       ),),
+                   ),
+                  Container(
+                      margin: EdgeInsets.only(right: 200*widthR),
+                      child: TextButton(
+                      child:  Text(
+                        'Sign in',
+                        style: TextStyle(fontSize: 110*curR),
+                      ),
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(
+                          builder: (context) => SignPage(),
+                        ));
+                      },
+                    )
                   )
                 ],
               ),

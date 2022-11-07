@@ -47,6 +47,10 @@ class TagReadPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double  heightR,widthR;
+    heightR = MediaQuery.of(context).size.height / 1080; //v26
+    widthR = MediaQuery.of(context).size.width / 2400;
+    var curR = widthR;
     return Scaffold(
       appBar: AppBar(
         title: Text('Read NFC and e-tag'),
@@ -63,12 +67,13 @@ class TagReadPage extends StatelessWidget {
         ],
       ),
       body: ListView(
-        padding: EdgeInsets.all(2),
+        padding: EdgeInsets.all(4*heightR),
         children: [
           FormSection(
             children: [
               FormRow(
-                title: Text('Start scanning', style: TextStyle(color: Theme.of(context).colorScheme.primary)),
+                title: Text('Start scanning',
+                    style: TextStyle(color: Theme.of(context).colorScheme.primary)),
                 onTap: () => startSession(
                   context: context,
                   handleTag: Provider.of<TagReadModel>(context, listen: false).handleTag,
